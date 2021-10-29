@@ -33,6 +33,7 @@ class Bot(Client):
         await Media.ensure_indexes()
         me = await self.get_me()
         temp.ME = me.id
+        temp.U_NAME = me.username
         self.username = '@' + me.username
         print(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
 

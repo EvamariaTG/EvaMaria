@@ -8,7 +8,7 @@ from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GRO
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
-from utils import get_size, is_subscribed, get_poster
+from utils import get_size, is_subscribed, get_poster, temp
 from database.users_chats_db import db
 from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.filters_mdb import(
@@ -18,8 +18,7 @@ from database.filters_mdb import(
 )
 
 BUTTONS = {}
-BOT = {}
-ab = []
+
 
 @Client.on_message(filters.group & filters.text)
 async def give_filter(client,message):
@@ -317,21 +316,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f"{files.file_name}"
             
         try:
-            username = ab[0]
-        except:
-            pass
-        try:
-            bot = await client.get_me()
-            username = bot.username
-            ab.append(username)
-        except FloodWait as e:
-                asyncio.sleep(e.x)
-                bot = await client.get_me()
-                username = bot.username
-                ab.append(username)
-        try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer(url=f"https://t.me/{username}?start={file_id}")
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
                 return
             else:
                 await client.send_cached_media(
@@ -343,10 +329,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
-            await query.answer(url=f"https://t.me/{username}?start={file_id}")
+            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
         except Exception as e:
-            
-            await query.answer(url=f"https://t.me/{username}?start={file_id}")
+            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
 
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
