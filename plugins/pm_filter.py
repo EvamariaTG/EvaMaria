@@ -361,10 +361,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('➕ Add Me To Your Groups ➕', url='http://t.me/EvaMariaBot?startgroup=true')
+            InlineKeyboardButton('➕ Add Me To Your Groups ➕', url='http://t.me/md_filter_bot?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/EvaMariaUpdates')
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/malayalamdubbedmoviegroup')
             ],[
             InlineKeyboardButton('ℹ️ Help', callback_data='help'),
             InlineKeyboardButton('😊 About', callback_data='about')
@@ -394,8 +394,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/EvaMariaUpdates'),
-            InlineKeyboardButton('♥️ Source', callback_data='source')
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/malayalamdubbedmoviegroup'),
+            InlineKeyboardButton('♥️ Source', callback_data='close_data')
             ],[
             InlineKeyboardButton('🏠 Home', callback_data='start'),
             InlineKeyboardButton('🔐 Close', callback_data='close_data')
@@ -547,9 +547,9 @@ async def auto_filter(client, message):
             )
         imdb=await get_poster(search)
         if imdb and imdb.get('poster'):
-            await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(btn))
         elif imdb:
-            await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_text(f"<b>Query: {search}</b> \n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(btn))
         else:
             await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ </b>", reply_markup=InlineKeyboardMarkup(btn))
         
