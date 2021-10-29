@@ -1,5 +1,5 @@
 {
-    "name": "Media Search bot",
+    "name": "EvaMariaBot",
     "description": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
     "keywords": [
       "telegram",
@@ -14,8 +14,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/subinps/Media-Search-bot",
-    "repository": "https://github.com/subinps/Media-Search-bot",
+    "website": "https://github.com/EvamariaTG/EvaMaria",
+    "repository": "https://github.com/EvamariaTG/EvaMaria",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
@@ -37,6 +37,10 @@
             "description": "Username or ID of Admin. Separate multiple Admins by space.",
             "value": ""
         },
+        "PICS": {
+            "description": "Add some telegraph link of pictures .",
+            "value": ""
+        },
         "AUTH_USERS": {
             "description": "Username or ID of users to give access of inline search. Separate multiple users by space.\nLeave it empty if you don't want to restrict bot usage.",
             "value": "",
@@ -46,29 +50,14 @@
             "description": "ID of channel.Make sure bot is admin in this channel. Without subscribing this channel users cannot use bot.",
             "value": "",
             "required": false
-        },
-        "START_MSG": {
-            "description": "Welcome message for start command",
-            "value": "**Hi, I'm [Media Search Bot](https://github.com/subinps/Media-Search-bot) or you can call me as Auto-Filter Bot**\n\nHere you can search files in Inline mode as well as PM, Use the below buttons to search files or send me the name of file to search.",
-            "required": false
-        },
+        },   
         "USE_CAPTION_FILTER": {
             "description": "Whether bot should use captions to improve search results. (True False)",
             "value": "False",
             "required": false
         },
-        "OMDB_API_KEY": {
-            "description": "Your OMBD API KEY, Fill if you want to generate a imdb poster of movie in autofilter.",
-            "value": "",
-            "required": false
-        },
         "CUSTOM_FILE_CAPTION": {
             "description": "A custom file caption for your files. formatable with , file_name, file_caption, file_size, Read Readme.md for better understanding.",
-            "value": "",
-            "required": false
-        },
-        "AUTH_GROUPS": {
-            "description": "ID of groups which bot should work as autofilter, bot can only work in thease groups. If not given , bot can be used in any group.",
             "value": "",
             "required": false
         },

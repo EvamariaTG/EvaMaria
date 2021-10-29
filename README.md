@@ -1,36 +1,34 @@
-# Modified Version Of [Media Search bot](https://github.com/Mahesh0253/Media-Search-bot)
+<p align="center">
+  <img src="assets/logo.jpg" alt="Eva Maria Logo">
+</p>
+<h1 align="center">
+  <b>Eva Maria Bot</b>
+</h1>
 
-## Added Features
-* Imdb posters for autofilter.
-* Custom captions for your files.
-* Index command to index all the files in a given channel (No USER_SESSION Required).
-* Ability to Index Public Channels without being admin.
-* Support Auto-Filter (Both in PM and in Groups)
-* Once files saved in Database , exists until you manually deletes. (No Worry if post gets deleted from source channel.)
-* Added Force subscribe (Only channel subscribes can use the bot)
-* Ability to restrict groups(AUTH_GROUPS)
 
-## Installation
+[![Stars](https://img.shields.io/github/stars/EvamariaTG/EvaMaria?style=flat-square&color=yellow)](https://github.com/EvamariaTG/EvaMaria/stargazers)
+[![Forks](https://img.shields.io/github/forks/EvamariaTG/EvaMaria?style=flat-square&color=orange)](https://github.com/EvamariaTG/EvaMaria/fork)
+[![Size](https://img.shields.io/github/repo-size/EvamariaTG/EvaMaria?style=flat-square&color=green)](https://github.com/EvamariaTG/EvaMaria/)   
+[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/EvamariaTG/EvaMaria)   
+[![Contributors](https://img.shields.io/github/contributors/EvamariaTG/EvaMaria?style=flat-square&color=green)](https://github.com/EvamariaTG/EvaMaria/graphs/contributors)
+[![License](https://img.shields.io/badge/License-AGPL-blue)](https://github.com/EvamariaTG/EvaMaria/blob/main/LICENSE)
+[![Sparkline](https://stars.medv.io/EvamariaTG/EvaMaria.svg)](https://stars.medv.io/EvamariaTG/EvaMaria)
 
-### Easy Way
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/subinps/Media-Search-bot)
-### Hard Way
 
-```bash
-# Create virtual environment
-python3 -m venv env
+## Features
 
-# Activate virtual environment
-env\Scripts\activate.bat # For Windows
-source env/bin/activate # For Linux or MacOS
+- [x] Auto Filter
+- [x] Manuel Filter
+- [x] IMDB
+- [x] Admin Commands
+- [x] Broadcast
+- [x] Index
+- [x] IMDB search
+- [x] Inline Search
+- [x] Random pics
+- [x] ids and User info 
+- [x] Stats, Users, Chats, Ban, Unban, Leave, Disable, Channel
 
-# Install Packages
-pip3 install -r requirements.txt
-
-# Edit info.py with variables as given below then run bot
-python3 bot.py
-```
-Check [`sample_info.py`](sample_info.py) before editing [`info.py`](info.py) file
 
 ## Variables
 
@@ -42,50 +40,85 @@ Check [`sample_info.py`](sample_info.py) before editing [`info.py`](info.py) fil
 * `ADMINS`: Username or ID of Admin. Separate multiple Admins by space
 * `DATABASE_URI`: [mongoDB](https://www.mongodb.com) URI. Get this value from [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/dsuTn4qV2GA)
 * `DATABASE_NAME`: Name of the database in [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/dsuTn4qV2GA)
-
+* `LOG_CHANNEL` : A channel to log the activities of bot. Make sure bot is an admin in the channel.
 ### Optional Variables
-* `OMDB_API_KEY`: OMBD_API_KEY to generate imdb poster for filter results.Get it from [omdbapi.com](http://www.omdbapi.com/apikey.aspx)
-* `CUSTOM_FILE_CAPTION` : A custom caption for your files. You can format it with file_name, file_size, file_caption.(supports html formating). Don't use '\n' for now.
-Example: `<b>Join [XTZ Bots](https://t.me/subin_works) for more useful bots</b>
-<code>{file_name}</code>
-Size{file_size}
-{file_caption}.`
-* `AUTH_GROUPS` : ID of groups which bot should work as autofilter, bot can only work in thease groups. If not given , bot can be used in any group.
-* `COLLECTION_NAME`: Name of the collections. Defaults to Telegram_files. If you going to use same database, then use different collection name for each bot
-* `CACHE_TIME`: The maximum amount of time in seconds that the result of the inline query may be cached on the server
-* `USE_CAPTION_FILTER`: Whether bot should use captions to improve search results. (True/False)
-* `AUTH_USERS`: Username or ID of users to give access of inline search. Separate multiple users by space. Leave it empty if you don't want to restrict bot usage.
-* `AUTH_CHANNEL`: ID of channel. Without subscribing this channel users cannot use bot.
-* `START_MSG`: Welcome message for start command.
+* `PICS`: Telegraph links of images to show in start message.( Multiple images can be used seperated by space )
+* Check [info.py](https://github.com/EvamariaTG/evamaria/blob/master/info.py) for more
 
-## Note
-* Currently [API used](http://www.omdbapi.com) here is allowing 1000 requests per day. [You may not get posters if its crossed](https://t.me/ThankTelegram/910168). 
-Once a poster is fetched from OMDB , poster is saved to DB to reduce duplicate requests.
+
+## Deploy
+You can deploy this bot anywhere.
+
+<i>**[Watch Deploying Tutorial...](https://youtu.be)**</i>
+
+<details><summary>Deploy To Heroku</summary>
+<p>
+<br>
+<a href="https://heroku.com/deploy?template=https://github.com/EvamariaTG/evamaria/tree/master">
+  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+</a>
+</p>
+</details>
+
+<details><summary>Deploy To VPS</summary>
+<p>
+<pre>
+git clone https://github.com/EvamariaTG/evamaria
+# Install Packages
+pip3 install -r requirements.txt
+Edit info.py with variables as given below then run bot
+python3 bot.py
+</pre>
+</p>
+</details>
+
 
 ## Admin commands
 ```
-channel - Get basic infomation about channels
-total - Show total of saved files
-delete - Delete file from database
-index - Index all files from channel.
-logger - Get log file
+• /logs - to get the rescent errors
+• /stats - to get status of files in db.
+* /filter - add manual filters
+* /filters - view filters
+* /connect - connect to PM.
+* /disconnect - disconnect from PM
+* /del - delete a filter
+* /delall - delete all filters
+* /deleteall - delete all index(autofilter)
+* /delete - delete a specific file from index.
+* /info - get user info
+* /id - get tg ids.
+* /imdb - fetch info from imdb.
+• /users - to get list of my users and ids.
+• /chats - to get list of the my chats and ids 
+• /index  - to add files from a channel
+• /leave  - to leave from a chat.
+• /disable  -  do disable a chat.
+* /enable - re-enable chat.
+• /ban  - to ban a user.
+• /unban  - to unban a user.
+• /channel - to get list of total connected channels
+• /broadcast - to broadcast a message to all Eva Maria users
 ```
+## Support
+[![telegram badge](https://img.shields.io/badge/Telegram-Group-30302f?style=flat&logo=telegram)](https://telegram.dog/EvaMariaSupport)
+[![telegram badge](https://img.shields.io/badge/Telegram-Channel-30302f?style=flat&logo=telegram)](https://telegram.dog/EvaMariaUpdates)
 
-## Tips
-* You can use `|` to separate query and file type while searching for specific type of file. For example: `Avengers | video`
-* If you don't want to create a channel or group, use your chat ID / username as the channel ID. When you send a file to a bot, it will be saved in the database.
-
+## Credits 
+* [![EvaMaria-Devs](https://img.shields.io/static/v1?label=EvaMaria&message=devs&color=critical)](https://telegram.dog/EvaMariaDevs)
 
 
 ## Thanks to 
-* [Pyrogram](https://github.com/pyrogram/pyrogram)
-* Original [Repo](https://github.com/Mahesh0253/Media-Search-bot)
+ - Thanks To Dan For His Awsome [Libary](https://github.com/pyrogram/pyrogram)
+ - Thanks To Mahesh For His Awesome [Media-Search-bot](https://github.com/Mahesh0253/Media-Search-bot)
+ - Thanks To All Everyone In This Journey
 
 
-## Support
-Contact Me On [Telegram](https://t.me/subinps_bot)
+## Disclaimer
+[![GNU Affero General Public License 2.0](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.en.html#header)    
+Licensed under [GNU AGPL 2.0.](https://github.com/EvamariaTG/evamaria/blob/master/LICENSE)
+Selling The Codes To Other People For Money Is *Strictly Prohibited*.
 
-[Update Channel](https://t.me/subin_works)
+## Inspiration
+This is an attempt to create a clone of a BOAT made out of [banana trees 🌳](https://telegram.dog/GetTGLink/4187)
 
-## License
-Code released under [The GNU General Public License](LICENSE).
+[![For Vaza](https://telegra.ph/file/e743b0c8a04252774bac2.jpg)](https://telegra.ph/file/98342dc186fd7484cba91.mp4 "Oru Kootam Vazhakalk samarpikkunnu")
