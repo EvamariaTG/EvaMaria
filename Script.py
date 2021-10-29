@@ -84,7 +84,6 @@ This module only works for my admins
 • /stats - <code>to get status of files in db.</code>
 • /users - <code>to get list of my users and ids.</code>
 • /chats - <code>to get list of the my chats and ids </code>
-• /index  - <code>to add files from a channel</code>
 • /leave  - <code>to leave from a chat.</code>
 • /disable  -  <code>do disable a chat.</code>
 • /ban  - <code>to ban a user.</code>
