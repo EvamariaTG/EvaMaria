@@ -345,7 +345,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except PeerIdInvalid:
             await query.answer(url=f"https://t.me/{username}?start={file_id}")
         except Exception as e:
-            print(e)
+            
             await query.answer(url=f"https://t.me/{username}?start={file_id}")
 
     elif query.data.startswith("checksub"):
