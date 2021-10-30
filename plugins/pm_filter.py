@@ -547,9 +547,9 @@ async def auto_filter(client, message):
             )
         imdb=await get_poster(search)
         if imdb and imdb.get('poster'):
-            await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n 🎬<b> Title :<b> <a href={imdb['url']}>{imdb.get('title')}</a>\n <b>🎭 Genres :</b> {imdb.get('genres')}\n <b>📆 Year: </b><a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n </b>🌟 Rating:</b> <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10 \n \n <b> ‌‌‌‌‎©️ＳＬＯＦＦＩＣＩＡＬ ­ </b>", reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n\n 🎬<b> Title :<b> <a href={imdb['url']}>{imdb.get('title')}</a>\n <b>🎭 Genres :</b> {imdb.get('genres')}\n <b>📆 Year: </b><a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n </b>🌟 Rating:</b> <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10 \n \n <b> ‌‌‌‌‎©️ＳＬＯＦＦＩＣＩＡＬ ­ </b>", reply_markup=InlineKeyboardMarkup(btn))
         elif imdb:
-            await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌🎬<b> Title :<b> <a href={imdb['url']}>{imdb.get('title')}</a>\n <b>🎭 Genres :</b> {imdb.get('genres')}\n <b>📆 Year: </b><a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n </b>🌟 Rating:</b> <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10  \n \n <b> ‌‌‌‌‎©️ＳＬＯＦＦＩＣＩＡＬ ­ </b>", reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_text(f"<b>Query: {search} \n\n </b>🎬<b> Title :<b> <a href={imdb['url']}>{imdb.get('title')}</a>\n <b>🎭 Genres :</b> {imdb.get('genres')}\n <b>📆 Year: </b><a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n </b>🌟 Rating:</b> <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10  \n \n <b> ‌‌‌‌‎©️ＳＬＯＦＦＩＣＩＡＬ ­ </b>", reply_markup=InlineKeyboardMarkup(btn))
         else:
             await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ </b> \n \n <b> ‌‌‌‌‎©️ＳＬＯＦＦＩＣＩＡＬ ­ </b>", reply_markup=InlineKeyboardMarkup(btn))
         
