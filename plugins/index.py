@@ -4,7 +4,6 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
 from info import ADMINS, LOG_CHANNEL
-import os
 from database.ia_filterdb import save_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from utils import temp
@@ -18,7 +17,7 @@ async def index_files(bot, query):
     if query.data.startswith('index_cancel'):
         temp.CANCEL=True
         return await query.answer("Cancelling Indexing")
-    _, raju, chat, lst_msg_id, from_user = query.data.split("_")
+    _, raju, chat, lst_msg_id, from_user = query.data.split("#")
     if raju == 'reject':
         await query.message.delete()
         await bot.send_message(int(from_user), f'Your Submission for indexing {chat} has been decliened by our moderators.', reply_to_message_id=int(lst_msg_id))
@@ -27,7 +26,7 @@ async def index_files(bot, query):
     if lock.locked():
         return await query.answer('Wait until previous process complete.', show_alert=True)
     msg = query.message
-  
+
     await query.answer('Processing...⏳', show_alert=True)
     if int(from_user) not in ADMINS:
         await bot.send_message(int(from_user), f'Your Submission for indexing {chat} has been accepted by our moderators and will be added soon.', reply_to_message_id=int(lst_msg_id))
@@ -37,7 +36,11 @@ async def index_files(bot, query):
             [[InlineKeyboardButton('Cancel', callback_data='index_cancel')]]
         )
     )
-    await index_files_to_db(int(lst_msg_id), int(chat), msg, bot)
+    try:
+        chat = int(chat)
+    except:
+        chat = chat
+    await index_files_to_db(int(lst_msg_id), chat, msg, bot)
 
 
 @Client.on_message(filters.forwarded & filters.private)
@@ -55,14 +58,14 @@ async def send_for_index(bot, message):
     if message.from_user.id in ADMINS:
         buttons = [
             [
-                InlineKeyboardButton('Yes', callback_data=f'index_accept_{chat_id}_{last_msg_id}_{message.from_user.id}')
+                InlineKeyboardButton('Yes', callback_data=f'index#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
             ],
             [
                 InlineKeyboardButton('close', callback_data='close_data'),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        return await message.reply(f'Do you Want To Index This Channel?\n\nChat ID/ Username - {chat_id}\nLast Message ID - {last_msg_id}', reply_markup=reply_markup)
+        return await message.reply(f'Do you Want To Index This Channel?\n\nChat ID/ Username: <code>{chat_id}</code>\nLast Message ID: <code>{last_msg_id}</code>', reply_markup=reply_markup)
 
     if not message.forward_from_chat.username:
         try:
@@ -73,10 +76,10 @@ async def send_for_index(bot, message):
         link = f"@{message.forward_from_chat.username}"
     buttons = [
         [
-            InlineKeyboardButton('Accept Index', callback_data=f'index_accept_{chat_id}_{last_msg_id}_{message.from_user.id}')
+            InlineKeyboardButton('Accept Index', callback_data=f'index#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
         ],
         [
-            InlineKeyboardButton('Reject Index', callback_data=f'index_reject_{chat_id}_{message.message_id}_{message.from_user.id}'),
+            InlineKeyboardButton('Reject Index', callback_data=f'index#reject#{chat_id}#{message.message_id}#{message.from_user.id}'),
         ]
         ]
     reply_markup = InlineKeyboardMarkup(buttons)
@@ -105,7 +108,6 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
         try:
             total=lst_msg_id + 1
             current=temp.CURRENT
-            nyav=0
             temp.CANCEL=False
             while current < total:
                 if temp.CANCEL:
@@ -133,19 +135,19 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                     media.caption = message.caption
                     await save_file(media)
                     total_files += 1
+                except TypeError:
+                    pass
                 except Exception as e:
                     print(e)
                 current+=1
-                nyav+=1
-                if nyav == 20:
+                if current % 20 == 0:
                     can = [[InlineKeyboardButton('Cancel', callback_data='index_cancel')]]
                     reply = InlineKeyboardMarkup(can)
                     await msg.edit_text(
-                        text=f"Total messages fetched: {current}\nTotal messages saved: {total_files}",
+                        text=f"Total messages fetched: <code>{current}</code>\nTotal messages saved: <code>{total_files}</code>",
                         reply_markup=reply)
-                    nyav -= 20
         except Exception as e:
             logger.exception(e)
             await msg.edit(f'Error: {e}')
         else:
-            await msg.edit(f'Total {total_files} Saved To DataBase!')
+            await msg.edit(f'Total <code>{total_files}</code> Saved To DataBase!')
