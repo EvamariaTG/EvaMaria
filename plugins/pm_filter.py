@@ -529,7 +529,7 @@ async def auto_filter(client, message):
             for file in files:
                 file_id = file.file_id
                 btn.append(
-                    [InlineKeyboardButton(text=f"{get_size(file.file_size)}","{file.file_name}", callback_data=f'files#{file_id}')]
+                    [InlineKeyboardButton(text=f"{get_size(file.file_size)}""{file.file_name}", callback_data=f'files#{file_id}')]
                     )
         if not btn:
             return
