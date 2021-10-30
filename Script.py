@@ -12,10 +12,10 @@ class script(object):
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
 - Eva Maria is a open source project. 
-- Source - https://github.com/EvamariaTG/EvaMaria  
+- Source - https://github.com/LXR-YOUTUBER-AMAL/EvaMaria  
 
 <b>DEVS:</b>
-- <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>"""
+- <a href=https://t.me/LXRBOTSGROUP>Team Eva Maria</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
 - Filter is the feature were users can set automated replies for a particular keyword and tessa will respond whenever a keyword is found the message
@@ -40,7 +40,7 @@ class script(object):
 3. Buttons should be properly parsed as markdown format
 
 <b>URL buttons:</b>
-<code>[Button Text](buttonurl:https//t.me/EvaMariaBot)</code>
+<code>[Button Text](buttonurl:https//t.me/LXRAMALSER3BOT)</code>
 
 <b>Alert buttons:</b>
 <code>[Button Text](buttonalert:This is an alert message)</code>"""
