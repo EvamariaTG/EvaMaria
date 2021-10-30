@@ -4,7 +4,29 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from time import time
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery,Message,ForceReply
+
+START_TIME = datetime.utcnow()
+START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+TIME_DURATION_UNITS = (
+    ('week', 60 * 60 * 24 * 7),
+    ('day', 60 * 60 * 24),
+    ('hour', 60 * 60),
+    ('min', 60),
+    ('sec', 1)
+)
+
+async def _human_time_duration(seconds):
+    if seconds == 0:
+        return 'inf'
+    parts = []
+    for unit, div in TIME_DURATION_UNITS:
+        amount, seconds = divmod(int(seconds), div)
+        if amount > 0:
+            parts.append('{} {}{}'
+                         .format(amount, unit, "" if amount == 1 else "s"))
+    return ', '.join(parts)
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
@@ -151,6 +173,7 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
     imdb = await get_poster(query=movie, id=True)
     btn = [
             [
+                
                 InlineKeyboardButton(
                     text=f"{imdb.get('title')} - {imdb.get('year')}",
                     url=imdb['url'],
@@ -163,6 +186,25 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
     else:
         await query.message.edit(f"IMDb Data:\n\n🏷 Title:<a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year:<a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n🖋 StoryLine: <code>{imdb.get('plot')} </code>", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
     await query.answer()
-        
+    
+    @Client.on_message(filters.command("ping"))
+async def ping_pong(client, m: Message):
+    start = time()
+    m_reply = await m.reply_text("Pinging...")
+    delta_ping = time() - start
+    await m_reply.edit_text(
+        "🏓 `PONG!!`\n"
+        f"⚡️ `{delta_ping * 1000:.3f} ms`"
+    )
 
-        
+
+@Client.on_message(filters.command("uptime"))
+async def get_uptime(client, m: Message):
+    current_time = datetime.utcnow()
+    uptime_sec = (current_time - START_TIME).total_seconds()
+    uptime = await _human_time_duration(int(uptime_sec))
+    await m.reply_text(
+        "🤖 Bot status:\n"
+        f"• **Uptime:** `{uptime}`\n"
+        f"• **Start time:** `{START_TIME_ISO}`"
+    )   
