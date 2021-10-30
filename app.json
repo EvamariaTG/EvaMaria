@@ -1,5 +1,5 @@
 {
-    "name": "EvaMariaBot",
+    "name": "LXR BOTZz",
     "description": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
     "keywords": [
       "telegram",
@@ -14,8 +14,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/EvamariaTG/EvaMaria",
-    "repository": "https://github.com/EvamariaTG/EvaMaria",
+    "website": "https://github.com/LXR-YOUTUBER-AMAL/EvaMaria",
+    "repository": "https://github.com/LXR-YOUTUBER-AMAL/EvaMaria",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
