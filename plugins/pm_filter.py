@@ -21,7 +21,7 @@ from database.filters_mdb import(
 BUTTONS = {}
 
 
-@Client.on_message(filters.group & filters.text)
+@Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client,message):
     group_id = message.chat.id
     name = message.text
@@ -311,7 +311,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             try:
                 f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
             except Exception as e:
-                    print(e)
+                print(e)
             f_caption=f_caption
         if f_caption is None:
             f_caption = f"{files.file_name}"
@@ -538,7 +538,7 @@ async def auto_filter(client, message):
         if offset != "":
             key = f"{message.chat.id}-{message.message_id}"
             BUTTONS[key] = search
-            req = message.from_user.id or 0
+            req = message.from_user.id if message.from_user else 0
             btn.append(
                 [InlineKeyboardButton(text=f"🗓 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_{req}_{key}_{offset}")]
             )

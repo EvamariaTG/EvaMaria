@@ -16,7 +16,8 @@ async def save_group(bot, message):
     if temp.ME in r_j_check:
         if not await db.get_chat(message.chat.id):
             total=await bot.get_chat_members_count(message.chat.id)
-            await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, message.from_user.mention))       
+            r_j = message.from_user.mention if message.from_user else "Anonymous" 
+            await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, r_j))       
             await db.add_chat(message.chat.id, message.chat.title)
         if message.chat.id in temp.BANNED_CHATS:
             # Inspired from a boat of a banana tree
@@ -35,9 +36,8 @@ async def save_group(bot, message):
                 pass
             await bot.leave_chat(message.chat.id)
             return
-        username = temp.U_NAME
         buttons = [[
-            InlineKeyboardButton('ℹ️ Help', url=f"https://t.me/{username}?start"),
+            InlineKeyboardButton('ℹ️ Help', url=f"https://t.me/{temp.U_NAME}?start=help"),
             InlineKeyboardButton('📢 Updates', url='https:/t.me/TeamEvamaria')
         ]]
         reply_markup=InlineKeyboardMarkup(buttons)
@@ -135,7 +135,7 @@ async def re_enable_chat(bot, message):
     await message.reply("Chat Succesfully re-enabled")
 
 
-@Client.on_message(filters.command('stats'))
+@Client.on_message(filters.command('stats') & filters.incoming)
 async def get_ststs(bot, message):
     rju = await message.reply('Fetching stats..')
     total_users = await db.total_users_count()
