@@ -90,7 +90,7 @@ async def next_page(bot, query):
         for file in files:
             file_id = file.file_id
             btn.append(
-                [InlineKeyboardButton(text=f"{file.file_name}", callback_data=f'files#{file_id}'), InlineKeyboardButton(text=f"{get_size(file.file_size)}", callback_data=f'files_#{file_id}')]
+                [InlineKeyboardButton(text=f"{get_size(file.file_size)}{file.file_name}", callback_data=f'files_#{file_id}')]
                 )
     if 0 < offset <= 10:
         off_set = 0
@@ -311,8 +311,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
             except Exception as e:
                     print(e)
-            f_caption=f_caption
-        if f_caption is None:
+            f_caption=f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
+        if f_caption is None:f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
             f_caption = f"{files.file_name}"
             
         try:
@@ -347,9 +347,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
             except Exception as e:
                 print(e)
-                f_caption=f_caption
+                f_caption=f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
         if f_caption is None:
-            f_caption = f"{title}"
+            f_caption = f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
         await query.answer()
         await client.send_cached_media(
             chat_id=query.from_user.id,
@@ -529,7 +529,7 @@ async def auto_filter(client, message):
             for file in files:
                 file_id = file.file_id
                 btn.append(
-                    [InlineKeyboardButton(text=f"{file.file_name}", callback_data=f'files#{file_id}'), InlineKeyboardButton(text=f"{get_size(file.file_size)}", callback_data=f'files_#{file_id}')]
+                    [InlineKeyboardButton(text=f"{get_size(file.file_size)}{file.file_name}", callback_data=f'files#{file_id}')]
                     )
         if not btn:
             return
