@@ -1,5 +1,6 @@
 import re
 from os import environ
+from ast import literal_eval as eval
 id_pattern = re.compile(r'^.\d+$')
 
 
@@ -31,5 +32,6 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'TeamEvamaria')
-P_TTTI_SHOW_OFF = environ.get('P_TTTI_SHOW_OFF', False)
+P_TTTI_SHOW_OFF = eval((environ.get('P_TTTI_SHOW_OFF', "False")))
+IMDB = eval((environ.get('IMDB', "True")))
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
