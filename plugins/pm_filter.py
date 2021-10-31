@@ -312,7 +312,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except Exception as e:
                     print(e)
             f_caption=f_caption
-        if f_caption is None:f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
+        if f_caption is None:
             f_caption = f"{files.file_name}"
             
         try:
@@ -349,7 +349,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 print(e)
                 f_caption=f_caption
         if f_caption is None:
-            f_caption = f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
+            f_caption = 
         await query.answer()
         await client.send_cached_media(
             chat_id=query.from_user.id,
