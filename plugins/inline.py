@@ -69,7 +69,7 @@ async def answer(bot, query):
                            switch_pm_parameter="start",
                            next_offset=str(next_offset))
              except QueryIdInvalid:
-                     pass
+                 pass
              except Exception as e:
             logging.exception(str(e))
             await query.answer(results=[], is_personal=True,
