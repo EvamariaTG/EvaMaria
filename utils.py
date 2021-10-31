@@ -86,21 +86,7 @@ async def get_poster(query, bulk=False, id=False):
     elif movie.get("year"):
         date = movie.get("year")
     else:
-        date = "N/A"
-    poster = movie.get('full-size cover url')
-   plot = movie.get('plot outline')
-    if plot and len(plot) > 800:
-        plot = plot[0:800] + "..."
-    return {
-        'title': title,
-        'year': date,
-        'genres': genres,
-        'poster': poster,
-        'plot': plot,
-        'rating': rating,
-        'url':f'https://www.imdb.com/title/tt{movieid}'
-
-    }
+    
 
 # https://github.com/odysseusmax/animated-lamp/blob/2ef4730eb2b5f0596ed6d03e7b05243d93e3415b/bot/utils/broadcast.py#L37
 
