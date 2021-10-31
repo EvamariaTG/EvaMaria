@@ -58,7 +58,6 @@ async def answer(bot, query):
                 reply_markup=reply_markup))
 
     if results:
-         if results:
         switch_pm_text = f"{emoji.FILE_FOLDER} Results - {total}"
         if string:
             switch_pm_text += f" for {string}"
