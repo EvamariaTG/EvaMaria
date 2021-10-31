@@ -311,7 +311,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
             except Exception as e:
                     print(e)
-            f_caption=f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
+            f_caption=f_caption
         if f_caption is None:f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
             f_caption = f"{files.file_name}"
             
@@ -347,7 +347,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
             except Exception as e:
                 print(e)
-                f_caption=f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
+                f_caption=f_caption
         if f_caption is None:
             f_caption = f"(<b>🎬Title : file_name \n 🎬Title : file_size \n \n ©️ＳＬＯＦＦＩＣＩＡＬ</b>)
         await query.answer()
