@@ -2,12 +2,12 @@ import logging
 import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
-from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
+from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, ChatAdminRequired
 from info import ADMINS, LOG_CHANNEL
 from database.ia_filterdb import save_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from utils import temp
-
+import re
 logger = logging.getLogger(__name__)
 lock = asyncio.Lock()
 
@@ -47,26 +47,32 @@ async def index_files(bot, query):
     await index_files_to_db(int(lst_msg_id), chat, msg, bot)
 
 
-@Client.on_message((filters.forwarded | filters.regex("https:..t.me.+") | filters.regex(
-    "t.me.+")) & filters.private & filters.incoming)
+@Client.on_message((filters.forwarded | filters.regex("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/\d+|[a-zA-Z_0-9]+)/(\d+)$")) & filters.private & filters.incoming)
 async def send_for_index(bot, message):
     if message.text:
-        try:
-            m = message.text.split("/")
-            last_msg_id = int(m[-1])
-            try:
-                chat_id = int("-100" + m[-2])
-            except:
-                chat_id = m[-2]
-        except:
-            return
-    else:
+        regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/\d+|[a-zA-Z_0-9]+)/(\d+)$")
+        match = regex.match(message.text)
+        if not match:
+            return await message.reply('Invalid link')
+        chat_id = match.group(3)
+        last_msg_id = match.group(4)
+        if chat_id.isnumeric():
+            chat_id  = int(("-100" + chat_id))
+    elif message. message.forward_from_chat.type == 'channel':
         last_msg_id = message.forward_from_message_id
         chat_id = message.forward_from_chat.username or message.forward_from_chat.id
+    else:
+        return
     try:
-        await bot.get_messages(chat_id, last_msg_id)
+        await bot.get_chat(chat_id)
+    except ChannelInvalid:
+        return await message.reply('This may be a private channel / group. Make me an admin over there to index the files.')
+    try:
+        k = await bot.get_messages(chat_id, last_msg_id)
     except:
         return await message.reply('Make Sure That Iam An Admin In The Channel, if channel is private')
+    if k.empty:
+        return await message.reply('This may be group and iam not a admin of the group.')
 
     if message.from_user.id in ADMINS:
         buttons = [
@@ -102,7 +108,7 @@ async def send_for_index(bot, message):
     ]
     reply_markup = InlineKeyboardMarkup(buttons)
     await bot.send_message(LOG_CHANNEL,
-                           f'#IndexRequest\n\nBy : {message.from_user.mention}\nChat ID/ Username - <code> {chat_id}</code>\nLast Message ID - <code>{last_msg_id}</code>\nInviteLink - {link}',
+                           f'#IndexRequest\n\nBy : {message.from_user.mention} (<code>{message.from_user.id}</code>)\nChat ID/ Username - <code> {chat_id}</code>\nLast Message ID - <code>{last_msg_id}</code>\nInviteLink - {link}',
                            reply_markup=reply_markup)
     await message.reply('ThankYou For the Contribution, Wait For My Moderators to verify the files.')
 
@@ -155,7 +161,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                     await save_file(media)
                     total_files += 1
                 except TypeError:
-                    pass
+                    print("Skipping deleted messages (if this continues for long use /setskip to set a skip number)")
                 except Exception as e:
                     print(e)
                 current += 1
