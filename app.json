@@ -71,7 +71,7 @@
         },
         "MELCOW_MSG1": {
             "description": "Can set custome welcome msg in group. formatable with , file_name, file_caption, file_size, Read Readme.md for better understanding.",
-            "value": "",
+            "value": "Hey , {u.mention}, Welcome to {message.chat.title}",
             "required": false
         },
         "DATABASE_URI": {
