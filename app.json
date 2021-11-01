@@ -86,6 +86,11 @@
             "description": "The maximum amount of time in seconds that the result of the inline query may be cached on the server",
             "value": "300",
             "required": false
+        },
+        "IMDB": {
+            "description": "Imdb, the view of information when making True/False ",
+            "value": "True",
+            "required": false
         }
     },
     "addons": [],
