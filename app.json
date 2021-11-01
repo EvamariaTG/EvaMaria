@@ -101,6 +101,11 @@
             "description": "Customize Result Buttons to Callback or Url by (True = url / False = callback)",
             "value": "False",
             "required": false
+        },
+        "BOT_NAME": {
+            "description": "Choose Name For Your Bot",
+            "value": "𝙴𝚅𝙰 𝙼𝙰𝚁𝙸𝙰",
+            "required": false
         }
     },
     "addons": [],
