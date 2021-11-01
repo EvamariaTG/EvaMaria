@@ -1,6 +1,6 @@
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import AUTH_CHANNEL
+from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION
 from imdb import IMDb
 import asyncio
 from pyrogram.types import Message
@@ -88,9 +88,13 @@ async def get_poster(query, bulk=False, id=False):
     else:
         date = "N/A"
     poster = movie.get('full-size cover url')
-    plot = movie.get('plot')
-    if plot and len(plot) > 0:
-        plot = plot[0]
+    plot = ""
+    if LONG_IMDB_DESCRIPTION:
+        plot = movie.get('plot')
+        if plot and len(plot) > 0:
+            plot = plot[0]
+    else:
+        plot = movie.get('plot outline')
     if plot and len(plot) > 800:
         plot = plot[0:800] + "..."
     return {
