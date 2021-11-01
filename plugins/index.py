@@ -161,7 +161,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                     await save_file(media)
                     total_files += 1
                 except TypeError:
-                    pass
+                    print("Skipping deleted messages (if this continues for long use /setskip to set a skip number)")
                 except Exception as e:
                     print(e)
                 current += 1
