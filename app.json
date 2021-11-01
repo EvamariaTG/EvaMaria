@@ -93,7 +93,7 @@
             "required": false
         },
         "P_TTTI_SHOW_OFF": {
-            "description": "Show, True or False",
+            "description": "Customize Result Buttons to Callback or Url by (True = url / False = callback)",
             "value": "False",
             "required": false
         }
