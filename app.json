@@ -78,6 +78,11 @@
             "value": "Telegram_files",
             "required": false
         },
+          "SINGLE_BUTTON": {
+            "description": "choose b/w single or double buttons https://github.com/EvamariaTG/EvaMaria/issues/22",
+            "value": "False",
+            "required": false
+        },
         "CACHE_TIME": {
             "description": "The maximum amount of time in seconds that the result of the inline query may be cached on the server",
             "value": "300",
