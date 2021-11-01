@@ -8,7 +8,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details
 from database.users_chats_db import db
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PICS
-from utils import get_size, is_subscribed, temp
+from utils import get_size, is_subscribed, temp, GROUP
 
 logger = logging.getLogger(__name__)
 
