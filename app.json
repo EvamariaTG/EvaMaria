@@ -91,6 +91,11 @@
             "description": "Imdb, the view of information when making True/False ",
             "value": "True",
             "required": false
+        },
+        "P_TTTI_SHOW_OFF": {
+            "description": "Show, True or False",
+            "value": "False",
+            "required": false
         }
     },
     "addons": [],
