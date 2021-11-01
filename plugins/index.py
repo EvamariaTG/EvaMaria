@@ -55,7 +55,7 @@ async def send_for_index(bot, message):
             m = message.text.split("/")
             last_msg_id = int(m[-1])
             try:
-                chat_id = int(m[-2])
+                chat_id = int("-100" + m[-2])
             except:
                 chat_id = m[-2]
         except:
