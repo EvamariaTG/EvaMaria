@@ -1,6 +1,7 @@
 import os
 import logging
 import random
+from EvaMaria.info import SEND_FILES_IN_PRIVATE
 from Script import script
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
@@ -105,8 +106,14 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
+    # if reply, send media as reply +
+    if  SEND_FILES_IN_PRIVATE:
+        messageid = message.from_user.id
+    else:
+        messageid = message.chat.id
+    # if reply, send media as reply -
     await client.send_cached_media(
-        chat_id=message.from_user.id,
+        chat_id=messageid,
         file_id=file_id,
         caption=f_caption,
         )

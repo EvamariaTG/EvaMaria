@@ -2,6 +2,7 @@
 import asyncio
 import re
 import ast
+from EvaMaria.info import SEND_FILES_IN_PRIVATE
 from Script import script
 import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, make_inactive
@@ -343,8 +344,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
                 return
             else:
+                # if reply, send media as reply +
+                if  SEND_FILES_IN_PRIVATE:
+                    messageid = query.message.from_user.id
+                else:
+                    messageid = query.message.chat.id
+                # if reply, send media as reply -
                 await client.send_cached_media(
-                    chat_id=query.from_user.id,
+                    chat_id=messageid,
                     file_id=file_id,
                     caption=f_caption
                     )
@@ -374,8 +381,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if f_caption is None:
             f_caption = f"{title}"
         await query.answer()
+        # if reply, send media as reply +
+        if  SEND_FILES_IN_PRIVATE:
+            messageid = query.message.from_user.id
+        else:
+            messageid = query.message.chat.id
+        # if reply, send media as reply -
         await client.send_cached_media(
-            chat_id=query.from_user.id,
+            chat_id=messageid,
             file_id=file_id,
             caption=f_caption
             )
