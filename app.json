@@ -66,6 +66,11 @@
         },
         "CUSTOM_FILE_CAPTION": {
             "description": "A custom file caption for your files. formatable with , file_name, file_caption, file_size, Read Readme.md for better understanding.",
+            "value": "MELCOW_MSG1",
+            "required": false
+        },
+        "MELCOW_MSG1": {
+            "description": "Can set custome welcome msg in group. formatable with , file_name, file_caption, file_size, Read Readme.md for better understanding.",
             "value": "",
             "required": false
         },
