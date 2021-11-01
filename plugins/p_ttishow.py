@@ -7,6 +7,16 @@ from database.ia_filterdb import Media
 from utils import get_size, temp
 from Script import script
 from pyrogram.errors import ChatAdminRequired
+import asyncio
+import re
+import ast
+from Script import script
+import pyrogram
+from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, make_inactive
+from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTTI_SHOW_OFF, IMDB, SINGLE_BUTTON
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
+from utils import get_size, is_subscribed, get_poster, temp
 
 """-----------------------------------------https://t.me/GetTGLink/4179 --------------------------------------"""
 
