@@ -55,7 +55,7 @@ async def send_for_index(bot, message):
         if not match:
             return await message.reply('Invalid link')
         chat_id = match.group(4)
-        last_msg_id = match.group(5)
+        last_msg_id = int(match.group(5))
         if chat_id.isnumeric():
             chat_id  = int(("-100" + chat_id))
     elif message. message.forward_from_chat.type == 'channel':
