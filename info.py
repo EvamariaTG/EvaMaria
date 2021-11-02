@@ -33,7 +33,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', 0))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'TeamEvamaria')
-P_TTTI_SHOW_OFF = bool((environ.get('P_TTTI_SHOW_OFF', False)))
+P_TTI_SHOW_OFF = bool((environ.get('P_TTI_SHOW_OFF', False)))
 IMDB = bool((environ.get('IMDB', True)))
 SINGLE_BUTTON = bool((environ.get('SINGLE_BUTTON', False)))
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
