@@ -5,7 +5,9 @@ from info import ADMINS
 
 @Client.on_message((filters.private | filters.group) & filters.command('connect'))
 async def addconnection(client,message):
-    userid = message.from_user.id
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     chat_type = message.chat.type
 
     if chat_type == "private":
@@ -74,7 +76,9 @@ async def addconnection(client,message):
 
 @Client.on_message((filters.private | filters.group) & filters.command('disconnect'))
 async def deleteconnection(client,message):
-    userid = message.from_user.id
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     chat_type = message.chat.type
 
     if chat_type == "private":
