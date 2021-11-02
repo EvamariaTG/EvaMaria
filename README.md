@@ -2,7 +2,7 @@
   <img src="https://telegra.ph/file/17144c18ce19009cd8fd5.jpg" alt="THE CREATOR OF ALL">
 </p>
 <h1 align="center">
-  <b>Eva Maria Bot</b>
+  <b>THE CREATOR OF ALL</b>
 </h1>
 
 
