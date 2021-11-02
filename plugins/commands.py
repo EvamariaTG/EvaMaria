@@ -151,6 +151,19 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
+@Client.on_message(filters.command('total') & filters.user(ADMINS))
+async def total(bot, message):
+    """Show total files,users and chats in database"""
+    msg = await message.reply("Processing...", quote=True)
+    try:
+        total = await Media.count_documents()
+        users = await db.total_users_count()
+        chats = await db.total_chat_count()
+        await msg.edit(f'<b>Total files 📂:</b> <code>{total}</code> \n<b> Total users 🧑‍💼:</b> <code>{users}</code> \n<b> Total chats 🏷️:</b> <code>{chats}</code>')
+    except Exception as e:
+        logger.exception('Failed to check total files')
+        await msg.edit(f'Error: {e}')
+
 @Client.on_message(filters.command('delete') & filters.user(ADMINS))
 async def delete(bot, message):
     """Delete file from database"""
