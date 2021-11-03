@@ -67,7 +67,7 @@ class script(object):
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of tessa
+these are the extra features of Eva Maria
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specifed user.</code>
