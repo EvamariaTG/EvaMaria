@@ -104,5 +104,5 @@ Added By - {}
 ID - <code>{}</code>
 Name - {}
 """
-   UPDATES_TXT = """<b>update<b
+   UPDATES_TXT = """about: <b>update</b>
    orginal:- bot source updates is https://t.me/mdadmin2"""
