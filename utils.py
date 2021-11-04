@@ -1,6 +1,6 @@
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION
+from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM
 from imdb import IMDb
 import asyncio
 from pyrogram.types import Message
@@ -11,6 +11,8 @@ from datetime import datetime
 from typing import List
 from pyrogram.types import InlineKeyboardButton
 from database.users_chats_db import db
+from bs4 import BeautifulSoup
+import requests
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -53,13 +55,13 @@ async def is_subscribed(bot, query):
 async def get_poster(query, bulk=False, id=False):
     if not id:
         # https://t.me/GetTGLink/4183
-        pattern = re.compile(r"^(([a-zA-Z\s])*)?\s?([1-2]\d\d\d)?", re.IGNORECASE)
-        match = pattern.match(query)
-        year = None
-        if match:
-            title = match.group(1)
-            year = match.group(3)
+        query = (query.strip()).lower()
+        year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
+        if year:
+            year = list_to_str(year)
+            title = (query.replace(year, "")).strip()
         else:
+            year = None
             title = query
         movieid = imdb.search_movie(title.lower(), results=10)
         if not movieid:
@@ -147,6 +149,22 @@ async def broadcast_messages(user_id, message):
     except Exception as e:
         return False, "Error"
 
+async def search_gagala(text):
+    usr_agent = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+        'Chrome/61.0.3163.100 Safari/537.36'
+        }
+    text = text.replace(" ", '+')
+    url = f'https://www.google.com/search?q={text}'
+    response = requests.get(url, headers=usr_agent)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, 'html.parser')
+    titles = soup.find_all( 'h3' )
+    return [title.getText() for title in titles]
+
+
+
+
 def get_size(size):
     """Get size in readable format"""
 
@@ -215,6 +233,9 @@ def list_to_str(k):
         return "N/A"
     elif len(k) == 1:
         return str(k[0])
+    elif MAX_LIST_ELM:
+        k = k[:int(MAX_LIST_ELM)]
+        return ' '.join(f'{elem}, ' for elem in k)
     else:
         return ' '.join(f'{elem}, ' for elem in k)
 
