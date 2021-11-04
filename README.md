@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.jpg" alt="Eva Maria Logo">
+  <img src="assets/logo.jpg" alt="THE CREATOR OF ALL">
 </p>
 <h1 align="center">
-  <b>Eva Maria Bot</b>
+  <b>THE CREATOR OF ALL</b>
 </h1>
 
 
