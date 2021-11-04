@@ -4,7 +4,7 @@ I'm <a href=https://t.me.MoviZenX>MoviZenX Search Bot</a> or you can call me as 
 
 Here you can search files in Inline mode as well as PM, Use the below buttons to search files or send me the name of file to search.
 Owner - @AnnihilusOP 😁"""
-    HELP_TXT = """𝙷𝙴𝚈 {}
+    HELP_TXT = """Hey {}
 𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
     ABOUT_TXT = """⭐ Name: @TheCatWomanBot
 ⭐ Creators: <a href=https://t.me/MoviZenX>Team MoviZenX</a>
@@ -41,7 +41,7 @@ Owner - @AnnihilusOP 😁"""
 
 <b>NOTE:</b>
 1. Telegram will not allows you to send buttons without any content, so content is mandatory.
-2. Eva Maria supports buttons with any telegram media type.
+2. CatWoMan supports buttons with any telegram media type.
 3. Buttons should be properly parsed as markdown format
 
 <b>URL buttons:</b>
