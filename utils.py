@@ -59,11 +59,12 @@ async def get_poster(query, bulk=False, id=False, file=None):
         title = query
         year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
         if year:
-            year = list_to_str(year[0])
+            year = list_to_str(year[:1])
             title = (query.replace(year, "")).strip()
         elif file is not None:
             year = re.findall(r'[1-2]\d{3}', file, re.IGNORECASE)
-            year = list_to_str(year[0]) 
+            if year:
+                year = list_to_str(year[:1]) 
         else:
             year = None
         movieid = imdb.search_movie(title.lower(), results=10)
