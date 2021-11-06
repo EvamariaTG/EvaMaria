@@ -52,17 +52,20 @@ async def is_subscribed(bot, query):
 
     return False
 
-async def get_poster(query, bulk=False, id=False):
+async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
         query = (query.strip()).lower()
+        title = query
         year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
         if year:
-            year = list_to_str(year)
+            year = list_to_str(year[0])
             title = (query.replace(year, "")).strip()
+        elif file is not None:
+            year = re.findall(r'[1-2]\d{3}', file, re.IGNORECASE)
+            year = list_to_str(year[0]) 
         else:
             year = None
-            title = query
         movieid = imdb.search_movie(title.lower(), results=10)
         if not movieid:
             return None
