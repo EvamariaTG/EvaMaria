@@ -100,6 +100,9 @@ async def get_poster(query, bulk=False, id=False, file=None):
         plot = movie.get('plot outline')
     if plot and len(plot) > 800:
         plot = plot[0:800] + "..."
+    cast = movie.get("cast")
+    if cast:
+        cast = list_to_str(cast[:4])
 
     return {
         'title': movie.get('title'),
@@ -110,7 +113,7 @@ async def get_poster(query, bulk=False, id=False, file=None):
         'localized_title': movie.get('localized title'),
         'kind': movie.get("kind"),
         "imdb_id": f"tt{movie.get('imdbID')}",
-        "cast": list_to_str(movie.get("cast")),
+        "cast": cast,
         "runtime": list_to_str(movie.get("runtimes")),
         "countries": list_to_str(movie.get("countries")),
         "certificates": list_to_str(movie.get("certificates")),
