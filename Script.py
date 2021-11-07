@@ -6,8 +6,8 @@ Here you can search files in Inline mode as well as PM, Use the below buttons to
 Owner - @AnnihilusOP 😁"""
     HELP_TXT = """Hey {}
 𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
-    ABOUT_TXT = """⭐ Name: @MoviZenXFilterBot
-⭐ Creators: <a href=https://t.me/MoviZenX>Team MoviZenX</a>
+    ABOUT_TXT = """⭐ Name: <b>@MoviZenXFilterBot</b>
+⭐ Creators: <a href=https://t.me/MoviZenX>©️Team MoviZenX</a>
 ⭐ Library: Pyrogram
 ⭐ Language: <code>Python 3.2</code>
 ⭐ Build Status: V2.0.1 [Beta]
@@ -26,7 +26,7 @@ Owner - @AnnihilusOP 😁"""
 - Filter is the feature were users can set automated replies for a particular keyword and @TheCatWomanBot will respond whenever a keyword is found the message
 
 <b>NOTE:</b>
-1. TheCatWomanBot should have admin privillage.
+1. @MoviZenXFilterBot should have admin privillage.
 2. only admins can add filters in a chat.
 3. alert buttons have a limit of 64 characters.
 
@@ -41,11 +41,11 @@ Owner - @AnnihilusOP 😁"""
 
 <b>NOTE:</b>
 1. Telegram will not allows you to send buttons without any content, so content is mandatory.
-2. CatWoMan supports buttons with any telegram media type.
+2. @MoviZenXFilterBot supports buttons with any telegram media type.
 3. Buttons should be properly parsed as markdown format
 
 <b>URL buttons:</b>
-<code>[Button Text](buttonurl:https://t.me/TheCatWomanBot)</code>
+<code>[Button Text](buttonurl:https://t.me/MoviZenX)</code>
 
 <b>Alert buttons:</b>
 <code>[Button Text](buttonalert:This is an alert message)</code>"""
@@ -72,7 +72,7 @@ Owner - @AnnihilusOP 😁"""
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of CatWoman
+these are the extra features of @MoviZenXFilterBot
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specifed user.</code>
