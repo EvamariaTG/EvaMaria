@@ -9,6 +9,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from utils import temp
 import re
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 lock = asyncio.Lock()
 
 
@@ -70,7 +71,7 @@ async def send_for_index(bot, message):
     except (UsernameInvalid, UsernameNotModified):
         return await message.reply('Invalid Link specified.')
     except Exception as e:
-        print(e)
+        logger.exception(e)
         return await message.reply(f'Errors - {e}')
     try:
         k = await bot.get_messages(chat_id, last_msg_id)
@@ -156,7 +157,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                         replies=0
                     )
                 except Exception as e:
-                    print(e)
+                    logger.exception(e)
                 try:
                     for file_type in ("document", "video", "audio"):
                         media = getattr(message, file_type, None)
@@ -173,11 +174,11 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                         duplicate += 1
                     elif vnay == 2:
                         errors += 1
-                except TypeError:
-                    print("Skipping deleted messages (if this continues for long use /setskip to set a skip number)")
+                except AttributeError:
+                    logger.warning("Skipping deleted messages (if this continues for long use /setskip to set a skip number)")
                     deleted += 1
                 except Exception as e:
-                    print(e)
+                    logger.exception(e)
                 current += 1
                 if current % 20 == 0:
                     can = [[InlineKeyboardButton('Cancel', callback_data='index_cancel')]]

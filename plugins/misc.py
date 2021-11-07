@@ -6,6 +6,9 @@ from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.ERROR)
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
@@ -198,7 +201,7 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
             await query.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
         except Exception as e:
-            print(e)
+            logger.exception(e)
             await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
         await query.message.delete()
     else:
