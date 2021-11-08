@@ -174,11 +174,12 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                         duplicate += 1
                     elif vnay == 2:
                         errors += 1
-                except AttributeError:
-                    logger.warning("Skipping deleted messages (if this continues for long use /setskip to set a skip number)")
-                    deleted += 1
                 except Exception as e:
-                    logger.exception(e)
+                    if "NoneType" in str(e):
+                        logger.warning("Skipping deleted messages (if this continues for long use /setskip to set a skip number)")
+                        deleted += 1
+                    else:
+                        logger.exception(e)
                 current += 1
                 if current % 20 == 0:
                     can = [[InlineKeyboardButton('Cancel', callback_data='index_cancel')]]
