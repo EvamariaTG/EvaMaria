@@ -177,10 +177,10 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                         errors += 1
                 except Exception as e:
                     if "NoneType" in str(e):
-                        if not media:
-                            no_media += 1
-                        else:
+                        if message.empty:
                             deleted += 1
+                        elif not media:
+                            no_media += 1
                         logger.warning("Skipping deleted / Non-Media messages (if this continues for long, use /setskip to set a skip number)")     
                     else:
                         logger.exception(e)
