@@ -6,7 +6,7 @@ from Script import script
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from database.ia_filterdb import Media, get_file_details
+from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PICS
 from utils import get_size, is_subscribed, temp
@@ -173,11 +173,12 @@ async def delete(bot, message):
     else:
         await msg.edit('This is not supported file format')
         return
+    
+    file_id, file_ref = unpack_new_file_id(media.file_id)
 
     result = await Media.collection.delete_one({
-        'file_name': media.file_name,
-        'file_size': media.file_size,
-        'mime_type': media.mime_type
+        '_id': file_id,
+        'file_ref': file_ref
     })
     if result.deleted_count:
         await msg.edit('File is successfully deleted from database')
