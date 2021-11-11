@@ -10,7 +10,7 @@ from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PICS
 from utils import get_size, is_subscribed, temp
-
+import re
 logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.command("start"))
@@ -177,12 +177,31 @@ async def delete(bot, message):
     file_id, file_ref = unpack_new_file_id(media.file_id)
 
     result = await Media.collection.delete_one({
-        '_id': file_id
+        '_id': file_id,
     })
     if result.deleted_count:
         await msg.edit('File is successfully deleted from database')
     else:
-        await msg.edit('File not found in database')
+        file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
+        result = await Media.collection.delete_one({
+            'file_name': file_name,
+            'file_size': media.file_size,
+            'mime_type': media.mime_type
+            })
+        if result.deleted_count:
+            await msg.edit('File is successfully deleted from database')
+        else:
+            # files indexed before https://github.com/EvamariaTG/EvaMaria/commit/f3d2a1bcb155faf44178e5d7a685a1b533e714bf#diff-86b613edf1748372103e94cacff3b578b36b698ef9c16817bb98fe9ef22fb669R39 
+            # have original file name.
+            result = await Media.collection.delete_one({
+                'file_name': media.file_name,
+                'file_size': media.file_size,
+                'mime_type': media.mime_type
+            })
+            if result.deleted_count:
+                await msg.edit('File is successfully deleted from database')
+            else:
+                await msg.edit('File not found in database')
 
 
 @Client.on_message(filters.command('deleteall') & filters.user(ADMINS))
