@@ -177,8 +177,7 @@ async def delete(bot, message):
     file_id, file_ref = unpack_new_file_id(media.file_id)
 
     result = await Media.collection.delete_one({
-        '_id': file_id,
-        'file_ref': file_ref
+        '_id': file_id
     })
     if result.deleted_count:
         await msg.edit('File is successfully deleted from database')
