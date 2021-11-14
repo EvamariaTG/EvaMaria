@@ -91,7 +91,7 @@ async def addfilter(client, message):
         try:
             msg = get_file_id(message.reply_to_message)
             fileid = msg.file_id if msg else None
-            reply_text, btn, alert = parser(message.reply_to_message.caption.html, text)
+            reply_text, btn, alert = parser(extracted[1], text) if message.reply_to_message.sticker else parser(message.reply_to_message.caption.html, text)
         except:
             reply_text = ""
             btn = "[]"
