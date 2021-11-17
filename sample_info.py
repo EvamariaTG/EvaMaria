@@ -7,7 +7,7 @@ BOT_TOKEN = '123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11'
 USERBOT_STRING_SESSION = ''
 
 # Bot settings
-CACHE_TIME = 300
+CACHE_TIME = 250
 USE_CAPTION_FILTER = False
 
 # Admins, Channels & Users
