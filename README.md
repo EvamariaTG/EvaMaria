@@ -7,12 +7,12 @@
 
 
 [![Stars](https://img.shields.io/github/stars/hopepsycho/kunjappan2.0?style=flat-square&color=yellow)](https://github.com/hopepsycho/kunjappan2.0/stargazers)
-[![Forks](https://img.shields.io/github/forks/hopepsycho/kunjappan2.0?style=flat-square&color=orange)](https://github.com/EvamariaTG/EvaMaria/fork)
-[![Size](https://img.shields.io/github/repo-size/EvamariaTG/EvaMaria?style=flat-square&color=green)](https://github.com/EvamariaTG/EvaMaria/)   
-[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/EvamariaTG/EvaMaria)   
-[![Contributors](https://img.shields.io/github/contributors/EvamariaTG/EvaMaria?style=flat-square&color=green)](https://github.com/EvamariaTG/EvaMaria/graphs/contributors)
-[![License](https://img.shields.io/badge/License-AGPL-blue)](https://github.com/EvamariaTG/EvaMaria/blob/main/LICENSE)
-[![Sparkline](https://stars.medv.io/EvamariaTG/EvaMaria.svg)](https://stars.medv.io/EvamariaTG/EvaMaria)
+[![Forks](https://img.shields.io/github/forks/hopepsycho/kunjappan2.0?style=flat-square&color=orange)](https://github.com/hopepsycho/kunjappan2.0fork)
+[![Size](https://img.shields.io/github/repo-size/hopepsycho/kunjappan2.0?style=flat-square&color=green)](https://github.com/hopepsycho/kunjappan2.0/)   
+[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/hopepsycho/kunjappan2.0)   
+[![Contributors](https://img.shields.io/github/contributors/hopepsycho/kunjappan2.0?style=flat-square&color=green)](https://github.com/hopepsycho/kunjappan2.0/graphs/contributors)
+[![License](https://img.shields.io/badge/License-AGPL-blue)](https://github.com/hopepsycho/kunjappan2.0/blob/main/LICENSE)
+[![Sparkline](https://stars.medv.io/hopepsycho/kunjappan2.0.svg)](https://stars.medv.io/hopepsycho/kunjappan2.0)
 
 
 ## Features
@@ -38,7 +38,7 @@
 * `API_HASH`: Get this value from [telegram.org](https://my.telegram.org/apps)
 * `CHANNELS`: Username or ID of channel or group. Separate multiple IDs by space
 * `ADMINS`: Username or ID of Admin. Separate multiple Admins by space
-* `DATABASE_URI`: [mongoDB](https://www.mongodb.com) URI. Get this value from [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/1G1XwEOnxxo)
+* `DATABASE_URI`: [mongoDB](https://www.mongodb.com) URI. Get this value from [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/vkkZs6t_DZo)
 * `DATABASE_NAME`: Name of the database in [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/vkkZs6t_DZo)
 * `LOG_CHANNEL` : A channel to log the activities of bot. Make sure bot is an admin in the channel.
 ### Optional Variables
