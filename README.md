@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.jpg" alt="Eva Maria Logo">
+  <img src="assets/logo.jpg" alt="kunajppan2.0 Logo">
 </p>
 <h1 align="center">
-  <b>Eva Maria Bot</b>
+  <b>kunjappan 2.0</b>
 </h1>
 
 
