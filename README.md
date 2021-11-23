@@ -43,18 +43,18 @@
 * `LOG_CHANNEL` : A channel to log the activities of bot. Make sure bot is an admin in the channel.
 ### Optional Variables
 * `PICS`: Telegraph links of images to show in start message.( Multiple images can be used seperated by space )
-* Check [info.py](https://github.com/EvamariaTG/evamaria/blob/master/info.py) for more
+* Check [info.py](https://github.com/hopepsycho/kunjappan2.0/blob/master/info.py) for more
 
 
 ## Deploy
 You can deploy this bot anywhere.
 
-<i>**[Watch Deploying Tutorial...](https://youtu.be/1G1XwEOnxxo)**</i>
+<i>**[Watch Deploying Tutorial...](https://youtu.be/vkkZs6t_DZo)**</i>
 
 <details><summary>Deploy To Heroku</summary>
 <p>
 <br>
-<a href="https://heroku.com/deploy?template=https://github.com/EvamariaTG/evamaria/tree/master">
+<a href="https://heroku.com/deploy?template=https://github.com/hopepsycho/kunjappan2.0/tree/master">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
@@ -63,7 +63,7 @@ You can deploy this bot anywhere.
 <details><summary>Deploy To VPS</summary>
 <p>
 <pre>
-git clone https://github.com/EvamariaTG/evamaria
+git clone https://github.com/hopepsycho/kunjappan2.0
 # Install Packages
 pip3 install -r requirements.txt
 Edit info.py with variables as given below then run bot
