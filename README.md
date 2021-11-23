@@ -110,7 +110,7 @@ python3 bot.py
 ## Thanks to 
  - Thanks To Dan For His Awsome [Libary](https://github.com/pyrogram/pyrogram)
  - Thanks To Mahesh For His Awesome [Media-Search-bot](https://github.com/hopepsycho/kunjappan2.0)
- - Thanks To [Trojanz](https://github.com/hopepsycho) for Their Awesome [Unlimited Filter Bot](https://github.com/hopepsycho/kingofpsycho) And [AutoFilterBoT](https://github.com/hopepsycho/kunjappan2.0)
+ - Thanks To [PSYCHO](https://github.com/hopepsycho) for Their Awesome [Unlimited Filter Bot](https://github.com/hopepsycho/king_of_psycho) And [AutoFilterBoT](https://github.com/hopepsycho/kunjappan2.0)
  - Thanks To All Everyone In This Journey
 
 ### Note
