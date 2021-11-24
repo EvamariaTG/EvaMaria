@@ -7,7 +7,7 @@
 
 
 [![Stars](https://img.shields.io/github/stars/hopepsycho/kunjappan2.0?style=flat-square&color=yellow)](https://github.com/hopepsycho/kunjappan2.0/stargazers)
-[![Forks](https://img.shields.io/github/forks/hopepsycho/kunjappan2.0?style=flat-square&color=orange)](https://github.com/hopepsycho/kunjappan2.500fork)
+[![Forks](https://img.shields.io/github/forks/hopepsycho/kunjappan2.0?style=flat-square&color=orange)](https://github.com/hopepsycho/kunjappan2.0fork)
 [![Size](https://img.shields.io/github/repo-size/hopepsycho/kunjappan2.0?style=flat-square&color=green)](https://github.com/hopepsycho/kunjappan2.0/)   
 [![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/hopepsycho/kunjappan2.0)   
 [![Contributors](https://img.shields.io/github/contributors/hopepsycho/kunjappan2.0?style=flat-square&color=green)](https://github.com/hopepsycho/kunjappan2.0/graphs/contributors)
@@ -128,4 +128,4 @@ Selling The Codes To Other People For Money Is *Strictly Prohibited*.
 ## Inspiration
 This is an attempt to create a clone of a BOAT made out of [banana trees 🌳](https://telegram.dog/GetTGLink/4187)
 
-[![For Vaza](https://telegra.ph/file/e743b0c8a04252774bac2.jpg)](https://telegra.ph/file/98342dc186fd7484cba91.mp4 "Oru Kootam Vazhakalk samarpikkunnu")
+[![For Vaza](https://telegra.ph/file/cfc422395273551a0b148.jpg)](https://telegra.ph/file/98342dc186fd7484cba91.mp4 "Oru Kootam Vazhakalk samarpikkunnu")
