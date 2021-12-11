@@ -101,6 +101,7 @@ This module only works for my admins
 Group = {}(<code>{}</code>)
 Total Members = <code>{}</code>
 Added By - {}
+Bots Name - <{}>
 """
     LOG_TEXT_P = """A new user started BOT NAME - <{}> #NewUser
 ID - <code>{}</code>
