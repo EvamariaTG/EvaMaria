@@ -88,6 +88,10 @@
             "description": "Imdb, the view of information when making True/False ",
             "required": false
         },
+        "UPSTREAM_REPO": {
+            "description": "Paste Your Forked Repo Url",
+            "required": false
+        },
         "SINGLE_BUTTON": {
             "description": "choose b/w single or double buttons https://github.com/EvamariaTG/EvaMaria/issues/22",
             "required": false
