@@ -6,6 +6,7 @@ import ast
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 import pyrogram
+from info import BOT_USERNAME
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -383,10 +384,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+                await query.answer(url=f"https://t.me/{BOT_USERNAME}?start={file_id}")
                 return
             elif P_TTI_SHOW_OFF:
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+                await query.answer(url=f"https://t.me/{BOT_USERNAME}?start={file_id}")
                 return
             else:
                 await client.send_cached_media(
@@ -398,9 +399,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+            await query.answer(url=f"https://t.me/{BOT_USERNAME}?start={file_id}")
         except Exception as e:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+            await query.answer(url=f"https://t.me/{BOT_USERNAME}?start={file_id}")
 
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -433,7 +434,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{BOT_USERNAME}?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
             InlineKeyboardButton('🤖 Updates', url='https://t.me/TeamEvamaria')
