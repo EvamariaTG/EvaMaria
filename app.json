@@ -22,6 +22,10 @@
             "description": "Your bot token.",
             "required": true
         },
+        "BOT_USERNAME": {
+            "description": "enter Bot Username Without @",
+            "required": true
+        },
         "API_ID": {
             "description": "Get this value from https://my.telegram.org",
             "required": true
@@ -90,6 +94,7 @@
         },
         "UPSTREAM_REPO": {
             "description": "Paste Your Forked Repo Url",
+            "value": "https://github.com/raniyt/EvaMaria",
             "required": false
         },
         "SINGLE_BUTTON": {
