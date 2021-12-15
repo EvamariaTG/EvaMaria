@@ -401,7 +401,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('⚡ support', url='https://t.me/Malluflixupdates')
+            InlineKeyboardButton('⚡ support', url='https://t.me/Malluflixofficial')
             ],[
             InlineKeyboardButton('ℹ️ Help', callback_data='help'),
             InlineKeyboardButton('😊 About', callback_data='about')
@@ -431,8 +431,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/Malluflixupdates'),
-            InlineKeyboardButton('😈DEV', url ='https://t.me/Tamglier.')
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/Malluflixofficial'),
+            InlineKeyboardButton('😈DEV', url ='https://t.me/Tamglier')
             ],[
             InlineKeyboardButton('🏠 Home', callback_data='start'),
             InlineKeyboardButton('🔐 Close', callback_data='close_data')
