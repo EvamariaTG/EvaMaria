@@ -403,8 +403,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
             InlineKeyboardButton('⚡ support', url='https://t.me/Malluflixofficial')
             ],[
-            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-            InlineKeyboardButton('😊 About', callback_data='about')
+            InlineKeyboardButton('⚙️ Help', callback_data='help'),
+            InlineKeyboardButton('🎖️ About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -431,8 +431,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/Malluflixofficial'),
-            InlineKeyboardButton('😈DEV', url ='https://t.me/Tamglier')
+            InlineKeyboardButton('🎬 Movies', url='https://t.me/Mallu_flix'),
+            InlineKeyboardButton('😈 DEV', url ='https://t.me/edward_jo_david')
             ],[
             InlineKeyboardButton('🏠 Home', callback_data='start'),
             InlineKeyboardButton('🔐 Close', callback_data='close_data')
