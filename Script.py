@@ -16,11 +16,9 @@ class script(object):
 
 """<b>DEVS:</b>
 - <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""
-    MANUELFILTER_TXT = """Help: <b>Filters</b>
-
-- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
-
-<b>NOTE:</b>
+    MANUELFILTER_TXT = """Help: <b>Filters</b>\n
+- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message\n
+<b>NOTE:</b>\n
 1. Auto Filter should have admin privilage.
 2. Only admins can add filters in a chat.
 3. Alert buttons have a limit of 64 characters.
