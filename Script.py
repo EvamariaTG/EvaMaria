@@ -15,8 +15,9 @@ class script(object):
      
 <code>All the files in this bot are freely available on the internet or posted by somebody else.This bot is indexing files which are already uploaded on Telegram for easy of searching, We respect all the copyright laws and works in compliance with DMCA and EUCD. If anything is against law please contact us so that it can be removed asap.</code>"""
 
-"""<b>DEVS:</b>- <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""        
-    MANUALFILTER_TXT = """Help: <b>Filter
+"""<b>DEVS:</b>- <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""
+    MANUELFILTER_TXT = """Help: <b>Filters
+    
 - Filter is the feature were users can set automated replies for a particular keyword and the bot will respond whenever a keyword is found the message
 NOTE:
 1. Bot should have admin privillage.
