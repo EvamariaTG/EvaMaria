@@ -4,7 +4,7 @@ class script(object):
     HELP_TXT = """𝙷𝙴𝚈 {}
 𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
     ABOUT_TXT = """✯ 𝙼𝚈 𝙽𝙰𝙼𝙴: {}
-✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/MalluBhai>Mallu Bhai-FilmClub</a>
+✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/FilmClubChannel>Team FilmClub</a>
 ✯ 𝙻𝙸𝙱𝚁𝙰𝚁𝚈: 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼
 ✯ 𝙻𝙰𝙽𝙶𝚄𝙰𝙶𝙴: 𝙿𝚈𝚃𝙷𝙾𝙽 𝟹
 ✯ 𝙳𝙰𝚃𝙰 𝙱𝙰𝚂𝙴: 𝙼𝙾𝙽𝙶𝙾 𝙳𝙱
@@ -12,25 +12,29 @@ class script(object):
 ✯ 𝚂𝙾𝚄𝚁𝙲𝙴: <a href=https://t.me/kurachkanjiedukkatte/8>👉 Click Here</a>
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
-     
-<code>All the files in this bot are freely available on the internet or posted by somebody else.This bot is indexing files which are already uploaded on Telegram for easy of searching, We respect all the copyright laws and works in compliance with DMCA and EUCD. If anything is against law please contact us so that it can be removed asap.</code>"""
+- @FilmClubChannel is a open source project. <code>All the files in this bot are freely available on the internet or posted by somebody else.This bot is indexing files which are already uploaded on Telegram for easy of searching, We respect all the copyright laws and works in compliance with DMCA and EUCD. If anything is against law please contact us so that it can be removed asap.</code>"""
 
-"""<b>DEVS:</b>- <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""
-    MANUELFILTER_TXT = """Help: <b>Filters
-    
-- Filter is the feature were users can set automated replies for a particular keyword and the bot will respond whenever a keyword is found the message
-NOTE:
-1. Bot should have admin privillage.
+- Source - @FilmClubChannel  
+
+<b>DEVS:</b>
+- <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""
+    MANUELFILTER_TXT = """Help: <b>Filters</b>
+
+- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
+
+<b>NOTE:</b>
+1. Auto Filter should have admin privilage.
 2. Only admins can add filters in a chat.
 3. Alert buttons have a limit of 64 characters.
-Commands and Usage:
+
+<b>Commands and Usage:</b>
 • /filter - <code>add a filter in chat</code>
 • /filters - <code>list all the filters of a chat</code>
 • /del - <code>delete a specific filter in chat</code>
-• /delall - <code>delete the whole filters in a chat (chat owner only)</code></b>"""
+• /delall - <code>delete the whole filters in a chat (chat owner only)</code>"""
     BUTTON_TXT = """Help: <b>Buttons</b>
 
-- Auto Filter Supports both url and alert inline buttons.
+- Eva Maria Supports both url and alert inline buttons.
 
 <b>NOTE:</b>
 1. Telegram will not allows you to send buttons without any content, so content is mandatory.
