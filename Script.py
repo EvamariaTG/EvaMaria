@@ -14,8 +14,6 @@ class script(object):
     SOURCE_TXT = """<b>NOTE:</b>
 - @FilmClubChannel is a open source project. <code>All the files in this bot are freely available on the internet or posted by somebody else.This bot is indexing files which are already uploaded on Telegram for easy of searching, We respect all the copyright laws and works in compliance with DMCA and EUCD. If anything is against law please contact us so that it can be removed asap.</code>"""
 
-- Source - @FilmClubChannel  
-
 <b>DEVS:</b>
 - <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
