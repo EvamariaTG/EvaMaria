@@ -11,9 +11,11 @@ class script(object):
 ✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: 𝙲𝙾𝙽𝚃𝙰𝙱𝙾
 ✯ 𝚂𝙾𝚄𝚁𝙲𝙴: <a href=https://t.me/kurachkanjiedukkatte/8>👉 Click Here</a>
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
-     SOURCE_TXT = """
+     SOURCE_TXT = """<b>NOTE:</b>
+     
 <code>All the files in this bot are freely available on the internet or posted by somebody else.This bot is indexing files which are already uploaded on Telegram for easy of searching, We respect all the copyright laws and works in compliance with DMCA and EUCD. If anything is against law please contact us so that it can be removed asap.</code>"""
 
+"""<b>DEVS:</b>- <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""        
     MANUALFILTER_TXT = """Help: <b>Filter
 - Filter is the feature were users can set automated replies for a particular keyword and the bot will respond whenever a keyword is found the message
 NOTE:
