@@ -34,7 +34,7 @@ Commands and Usage:
 3. Buttons should be properly parsed as markdown format
 
 <b>URL buttons:</b>
-<code>[Button Text](buttonurl:https://t.me/EvaMariaBot)</code>
+<code>[Button Text](buttonurl:https://t.me/FilmClubChannel)</code>
 
 <b>Alert buttons:</b>
 <code>[Button Text](buttonalert:This is an alert message)</code>"""
@@ -61,7 +61,7 @@ Commands and Usage:
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of Eva Maria
+These are the extra features of Auto Filter
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specifed user.</code>
