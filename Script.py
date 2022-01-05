@@ -12,14 +12,17 @@ class script(object):
 ✯ 𝚂𝙾𝚄𝚁𝙲𝙴: <a href=https://t.me/kurachkanjiedukkatte/8>👉 Click Here</a>
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
-- @FilmClubChannel is a open source project. <code>All the files in this bot are freely available on the internet or posted by somebody else.This bot is indexing files which are already uploaded on Telegram for easy of searching, We respect all the copyright laws and works in compliance with DMCA and EUCD. If anything is against law please contact us so that it can be removed asap.</code>"""
+- @FilmClubChannel is a open source project. <code>All the files in this bot are freely available on the internet or posted by somebody else.This bot is indexing files which are already uploaded on Telegram for easy of searching, We respect all the copyright laws and works in compliance with DMCA and EUCD. If anything is against law please contact us so that it can be removed asap.</code>
+- Source - @FilmClubChannel  
 
-"""<b>DEVS:</b>
+<b>DEVS:</b>
 - <a href=https://t.me/FilmClubChannel>Team Film Club</a>"""
-    MANUELFILTER_TXT = """Help: <b>Filters</b>\n
-- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message\n
-<b>NOTE:</b>\n
-1. Auto Filter should have admin privilage.
+    MANUELFILTER_TXT = """Help: <b>Filters</b>
+
+- Filter is the feature were users can set automated replies for a particular keyword and Auto Filter will respond whenever a keyword is found the message
+
+<b>NOTE:</b>
+1. Auto Filter should have admin privillage.
 2. Only admins can add filters in a chat.
 3. Alert buttons have a limit of 64 characters.
 
@@ -46,13 +49,13 @@ class script(object):
 
 <b>NOTE:</b>
 1. Make me the admin of your channel if it's private.
-2. make sure that your channel does not contains camrips, porn and fake files.
+2. Make sure that your channel does not contains camrips, porn and fake files.
 3. Forward the last message to me with quotes.
  I'll add all the files in that channel to my db."""
     CONNECTION_TXT = """Help: <b>Connections</b>
 
 - Used to connect bot to PM for managing filters 
-- it helps to avoid spamming in groups.
+- It helps to avoid spamming in groups.
 
 <b>NOTE:</b>
 1. Only admins can add a connection.
