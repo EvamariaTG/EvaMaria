@@ -11,7 +11,7 @@ from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from database.ia_filterdb import Media
 from database.users_chats_db import db
-from info import API_ID, API_HASH, BOT_TOKEN, CHANNEL_ID
+from info import SESSION, API_ID, API_HASH, BOT_TOKEN, CHANNEL_ID
 from utils import temp
 
 class Bot(Client):
@@ -48,7 +48,7 @@ class Bot(Client):
         except Exception as e:
             self.LOGGER(__name__).warning(e)
             self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the CHANNEL_ID Value, Current Value {CHANNEL_ID}")
-            self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/TMWAD_Support for support")
+            self.LOGGER(__name__).info("\nBot Stopped.Join https://t.me/TeamEvamaria for support")
             sys.exit()
 
     async def stop(self, *args):
