@@ -11,9 +11,13 @@ from database.users_chats_db import db
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PICS
 from utils import get_size, is_subscribed, temp
 import re
+import json
+import base64
 logger = logging.getLogger(__name__)
 
-@Client.on_message(filters.command("start"))
+BATCH_FILES = {}
+
+@Client.on_message(filters.command("start") & filters.incoming & ~filters.edited)
 async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
         buttons = [
@@ -95,8 +99,74 @@ async def start(client, message):
         )
         return
     file_id = message.command[1]
-    files_ = await get_file_details(file_id)
+    if file_id.split("-", 1)[0] == "BATCH":
+        sts = await message.reply("Please wait")
+        file_id = file_id.split("-", 1)[1]
+        msgs = BATCH_FILES.get(file_id)
+        if not msgs:
+            file = await client.download_media(file_id)
+            try: 
+                with open(file) as file_data:
+                    msgs=json.loads(file_data.read())
+            except:
+                await sts.edit("FAILED")
+                return await client.send_message(LOG_CHANNEL, "UNABLE TO OPEN FILE.")
+            os.remove(file)
+            BATCH_FILES[file_id] = msgs
+        for msg in msgs:
+            title = msg.get("title")
+            size=get_size(int(msg.get("size", 0)))
+            f_caption=msg.get("caption", "")
+            if CUSTOM_FILE_CAPTION:
+                try:
+                    f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+                except Exception as e:
+                    logger.exception(e)
+                    f_caption=f_caption
+            if f_caption is None:
+                f_caption = f"{title}"
+            await client.send_cached_media(
+                chat_id=message.from_user.id,
+                file_id=msg.get("file_id"),
+                caption=f_caption,
+                )
+        await sts.delete()
+        return
+    elif file_id.split("-", 1)[0] == "DSTORE":
+        sts = await message.reply("Please wait")
+        b_string = file_id.split("-", 1)[1]
+        decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
+        f_msg_id, l_msg_id, f_chat_id = decoded.split("_", 2)
+        msgs_list = list(range(int(f_msg_id), int(l_msg_id)+1))
+        for msg in msgs_list:
+            try:
+                await client.copy_message(chat_id=message.chat.id, from_chat_id=int(f_chat_id), message_id=msg)
+            except Exception as e:
+                logger.exception(e)
+                pass  
+        return await sts.delete()
+
+    files_ = await get_file_details(file_id)           
     if not files_:
+        try:
+            msg = await client.send_cached_media(
+                chat_id=message.from_user.id,
+                file_id=file_id
+                )
+            filetype = msg.media
+            file = getattr(msg, filetype)
+            title = file.file_name
+            size=get_size(file.file_size)
+            f_caption = f"<code>{title}</code>"
+            if CUSTOM_FILE_CAPTION:
+                try:
+                    f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
+                except:
+                    return
+            await msg.edit_caption(f_caption)
+            return
+        except:
+            pass
         return await message.reply('No such file exist.')
     files = files_[0]
     title = files.file_name
@@ -231,4 +301,3 @@ async def delete_all_index_confirm(bot, message):
     await Media.collection.drop()
     await message.answer()
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
-
