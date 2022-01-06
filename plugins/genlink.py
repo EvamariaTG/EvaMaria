@@ -62,17 +62,17 @@ async def gen_link_batch(bot, message):
         return await message.reply(f'Errors - {e}')
 
     sts = await message.reply("Generating link for your message.\nThis may take time depending upon number of messages")
-    
     if chat_id in FILE_STORE_CHANNEL:
         string = f"{f_msg_id}_{l_msg_id}_{chat_id}"
         b_64 = base64.urlsafe_b64encode(string.encode("ascii")).decode().strip("=")
         return await sts.edit(f"Here is your link https://t.me/{temp.U_NAME}?start=DSTORE-{b_64}")
-    
+
     msgs_list = []
     c_msg = f_msg_id
-
+    
     diff = l_msg_id - f_msg_id
-
+    
+    FRMT = "Generating Link...\nTotal Messages: `{total}`\nDone: `{current}`\nRemaining: `{rem}`\nStatus: `{sts}`"
     if diff <= 200:
         msgs = await bot.get_messages(f_chat_id, list(range(f_msg_id, l_msg_id+1)))
         msgs_list += msgs
@@ -84,30 +84,49 @@ async def gen_link_batch(bot, message):
                 new_diff = 200
             elif new_diff <= 0:
                 break
-            msgs = await bot.get_messages(f_chat_id, list(range(c_msg, new_diff+1)))
+            print(new_diff, c_msg)
+            msgs = await bot.get_messages(f_chat_id, list(range(c_msg, c_msg+new_diff)))
             msgs_list += msgs
+            try:
+                await sts.edit(FRMT.format(total=diff, current=(c_msg - f_msg_id), rem=(l_msg_id - c_msg), sts="Fetching Messages"))
+            except:
+                pass
+            c_msg += new_diff
 
     outlist = []
     
     # file store without db channel
+    og_msg = 0
+    tot = 0
     for msg in msgs_list:
+        tot += 1
         if msg.empty or msg.service:
             continue
         if not msg.media:
             # only media messages supported.
             continue
-        file_type = msg.media
-        file = getattr(msg, file_type)
-        file = {
-            "file_id": file.file_id,
-            "caption": msg.caption,
-            "title": getattr(file, "file_name", ""),
-            "size": file.file_size,
-        }
-        outlist.append(file)
+        try:
+            file_type = msg.media
+            file = getattr(msg, file_type)
+            if file:
+                file = {
+                    "file_id": file.file_id,
+                    "caption": msg.caption,
+                    "title": getattr(file, "file_name", ""),
+                    "size": file.file_size,
+                }
+                og_msg +=1
+                outlist.append(file)
+        except:
+            pass
+        if not og_msg % 20:
+            try:
+                await sts.edit(FRMT.format(total=diff, current=tot, rem=(diff - tot), sts="Saving Messages"))
+            except:
+                pass
     with open(f"batchmode_{message.from_user.id}.json", "w+") as out:
         json.dump(outlist, out)
     post = await bot.send_document(LOG_CHANNEL, f"batchmode_{message.from_user.id}.json", file_name="Batch.json", caption="⚠️Generated for filestore.")
     os.remove(f"batchmode_{message.from_user.id}.json")
     file_id, ref = unpack_new_file_id(post.document.file_id)
-    await sts.edit(f"Here is your link https://t.me/{temp.U_NAME}?start=BATCH-{file_id}")
+    await sts.edit(f"Here is your link\nContains `{og_msg}` files.\n https://t.me/{temp.U_NAME}?start=BATCH-{file_id}")
