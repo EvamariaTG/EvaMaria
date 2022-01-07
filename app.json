@@ -66,6 +66,10 @@
             "description": "A custom file caption for your files. formatable with , file_name, file_caption, file_size, Read Readme.md for better understanding.",
             "required": false
         },
+        "BATCH_FILE_CAPTION": {
+            "description": "A custom file caption for your batch files. formatable with , file_name, file_caption, file_size, Read Readme.md for better understanding.",
+            "required": false
+        },
         "DATABASE_URI": {
             "description": "mongoDB URI. Get this value from https://www.mongodb.com. For more help watch this video - https://youtu.be/dsuTn4qV2GA",
             "required": true
