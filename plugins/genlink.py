@@ -84,7 +84,6 @@ async def gen_link_batch(bot, message):
                 new_diff = 200
             elif new_diff <= 0:
                 break
-            print(new_diff, c_msg)
             msgs = await bot.get_messages(f_chat_id, list(range(c_msg, c_msg+new_diff)))
             msgs_list += msgs
             try:

@@ -4,11 +4,11 @@ import random
 import asyncio
 from Script import script
 from pyrogram import Client, filters
-from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
+from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION
 from utils import get_size, is_subscribed, temp
 import re
 import json
@@ -125,11 +125,24 @@ async def start(client, message):
                     f_caption=f_caption
             if f_caption is None:
                 f_caption = f"{title}"
-            await client.send_cached_media(
-                chat_id=message.from_user.id,
-                file_id=msg.get("file_id"),
-                caption=f_caption,
-                )
+            try:
+                await client.send_cached_media(
+                    chat_id=message.from_user.id,
+                    file_id=msg.get("file_id"),
+                    caption=f_caption,
+                    )
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+                logger.warning(f"Floodwait of {e.x} sec.")
+                await client.send_cached_media(
+                    chat_id=message.from_user.id,
+                    file_id=msg.get("file_id"),
+                    caption=f_caption,
+                    )
+            except Exception as e:
+                logger.warning(e, exc_info=True)
+                continue
+                
         await sts.delete()
         return
     elif file_id.split("-", 1)[0] == "DSTORE":
@@ -141,9 +154,12 @@ async def start(client, message):
         for msg in msgs_list:
             try:
                 await client.copy_message(chat_id=message.chat.id, from_chat_id=int(f_chat_id), message_id=msg)
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+                await client.copy_message(chat_id=message.chat.id, from_chat_id=int(f_chat_id), message_id=msg)
             except Exception as e:
                 logger.exception(e)
-                pass  
+                continue  
         return await sts.delete()
 
     files_ = await get_file_details(file_id)           
