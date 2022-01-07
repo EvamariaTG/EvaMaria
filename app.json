@@ -15,8 +15,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/EvamariaTG/EvaMaria",
-    "repository": "https://github.com/EvamariaTG/EvaMaria",
+    "website": "https://t.me/requestbox1",
+    "repository": "https://t.me/requestbox1",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
