@@ -36,7 +36,7 @@ async def add_connection(group_id, user_id):
             mycol.insert_one(data)
             return True
         except:
-            logger.exception('Some error occured!', exc_info=True)
+            logger.exception('Some error occurred!', exc_info=True)
 
     else:
         try:
@@ -49,7 +49,7 @@ async def add_connection(group_id, user_id):
             )
             return True
         except:
-            logger.exception('Some error occured!', exc_info=True)
+            logger.exception('Some error occurred!', exc_info=True)
 
         
 async def active_connection(user_id):
@@ -131,6 +131,6 @@ async def delete_connection(user_id, group_id):
             )
         return True
     except Exception as e:
-        logger.exception(f'Some error occured! {e}', exc_info=True)
+        logger.exception(f'Some error occurred! {e}', exc_info=True)
         return False
 
