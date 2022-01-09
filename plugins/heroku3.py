@@ -1,5 +1,3 @@
-# HashMinner
-
 import os
 import math
 import json
