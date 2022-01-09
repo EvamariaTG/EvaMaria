@@ -61,13 +61,13 @@ class script(object):
 - ᏆͲ ᎻᎬᏞᏢՏ Ͳϴ ᎪᏙϴᏆᎠ ՏᏢᎪᎷᎷᏆΝᏀ ᏆΝ ᏀᎡϴႮᏢՏ.
 
 <b>NOTE:</b>
-1. Only admins can add a connection.
-2. Send <code>/connect</code> for connecting me to ur PM
+1. ϴΝᏞᎽ ᎷᏦ ᏟᎪΝ ᎪᎠᎠ Ꭺ ᏟϴΝΝᎬᏟͲᏆϴΝ.
+2. ՏᎬΝᎠ<code>/connect</code> ҒϴᎡ ᏟϴΝΝᎬᏟͲᏆΝᏀ ᎷᎬ Ͳϴ ႮᎡ ᏢᎷ
 
 <b>Commands and Usage:</b>
-• /connect  - <code>connect a particular chat to your PM</code>
-• /disconnect  - <code>disconnect from a chat</code>
-• /connections - <code>list all your connections</code>"""
+• /connect  - <code>ᏟϴΝΝᎬᏟͲ Ꭺ ᏢᎪᎡͲᏆᏟႮᏞᎪᎡ ᏟᎻᎪͲ Ͳϴ ᎽϴႮᎡ ᏢᎷ</code>
+• /disconnect  - <code>ᎠᏆՏᏟϴΝΝᎬᏟͲ ҒᎡϴᎷ Ꭺ ᏟᎻᎪͲ</code>
+• /connections - <code>ᏞᏆՏͲ ᎪᏞᏞ ᎽϴႮᎡ ᏟϴΝΝᎬᏟͲᏆϴΝՏ</code>"""
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
