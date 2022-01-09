@@ -11,19 +11,21 @@ class script(object):
 🔥 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: ᏢᎡᏆᏙᎪͲᎬ
 🔥 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v6.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
-- Eva Maria is a open source project. 
-- Source - https://github.com/EvamariaTG/EvaMaria  
+-  ᎷᏦ ᏆՏ Ꭺ ϴᏢᎬΝ ՏϴႮᎡᏟᎬ ᏢᎡϴᎫᎬᏟͲ.
+  
 
 <b>DEVS:</b>
-- <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>"""
+- <a href=https://t.me/mksupport1>ᎷᏦ 🔥</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
-- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
+- ҒᏆᏞͲᎬᎡ ᏆՏ ͲᎻᎬ ҒᎬᎪͲႮᎡᎬ ᏔᎬᎡᎬ ႮՏᎬᎡՏ ᏟᎪΝ ՏᎬͲ ᎪႮͲϴᎷᎪͲᎬᎠ ᎡᎬᏢᏞᏆᎬՏ ҒϴᎡ Ꭺ ᏢᎪᎡͲᏆᏟႮᏞᎪᎡ ᏦᎬᎽᏔϴᎡᎠ ᎪΝᎠ ᎷᏦ 🔥 ᏔᏆᏞᏞ ᎡᎬՏᏢϴΝᎠ ᏔᎻᎬΝᎬᏙᎬᎡ Ꭺ ᏦᎬᎽᏔϴᎡᎠ ᏆՏ ҒϴႮΝᎠ ͲᎻᎬ ᎷᎬՏՏᎪᏀᎬ
+
 
 <b>NOTE:</b>
-1. eva maria should have admin privillage.
-2. only admins can add filters in a chat.
-3. alert buttons have a limit of 64 characters.
+1. ᎷᏦ ՏᎻϴႮᏞᎠ ᎻᎪᏙᎬ ᎪᎠᎷᏆΝ ᏢᎡᏆᏙᏆᏞᏞᎪᏀᎬ.
+2. ϴΝᏞᎽ ᎪᎠᎷᏆΝՏ ᏟᎪΝ ᎪᎠᎠ ҒᏆᏞͲᎬᎡՏ ᏆΝ Ꭺ ᏟᎻᎪͲ.
+3. ᎪᏞᎬᎡͲ ᏴႮͲͲϴΝՏ ᎻᎪᏙᎬ Ꭺ ᏞᏆᎷᏆͲ ϴҒ 64 ᏟᎻᎪᎡᎪᏟͲᎬᎡՏ.
+
 
 <b>Commands and Usage:</b>
 • /filter - <code>add a filter in chat</code>
@@ -32,29 +34,31 @@ class script(object):
 • /delall - <code>delete the whole filters in a chat (chat owner only)</code>"""
     BUTTON_TXT = """Help: <b>Buttons</b>
 
-- Eva Maria Supports both url and alert inline buttons.
+-ᎷᏦ ՏႮᏢᏢϴᎡͲՏ ᏴϴͲᎻ ႮᎡᏞ ᎪΝᎠ ᎪᏞᎬᎡͲ ᏆΝᏞᏆΝᎬ ᏴႮͲͲϴΝՏ.
+
 
 <b>NOTE:</b>
-1. Telegram will not allows you to send buttons without any content, so content is mandatory.
-2. Eva Maria supports buttons with any telegram media type.
-3. Buttons should be properly parsed as markdown format
+1. ͲᎬᏞᎬᏀᎡᎪᎷ ᏔᏆᏞᏞ ΝϴͲ ᎪᏞᏞϴᏔՏ ᎽϴႮ Ͳϴ ՏᎬΝᎠ ᏴႮͲͲϴΝՏ ᏔᏆͲᎻϴႮͲ ᎪΝᎽ ᏟϴΝͲᎬΝͲ, Տϴ ᏟϴΝͲᎬΝͲ ᏆՏ ᎷᎪΝᎠᎪͲϴᎡᎽ.
+2.  ᎷᏦ ՏႮᏢᏢϴᎡͲՏ ᏴႮͲͲϴΝՏ ᏔᏆͲᎻ ᎪΝᎽ ͲᎬᏞᎬᏀᎡᎪᎷ ᎷᎬᎠᏆᎪ ͲᎽᏢᎬ.
+3. ᏴႮͲͲϴΝՏ ՏᎻϴႮᏞᎠ ᏴᎬ ᏢᎡϴᏢᎬᎡᏞᎽ ᏢᎪᎡՏᎬᎠ ᎪՏ ᎷᎪᎡᏦᎠϴᏔΝ ҒϴᎡᎷᎪͲ.
+
 
 <b>URL buttons:</b>
-<code>[Button Text](buttonurl:https://t.me/EvaMariaBot)</code>
+<code>[Button Text](buttonurl:https://t.me/mksupport1)</code>
 
 <b>Alert buttons:</b>
 <code>[Button Text](buttonalert:This is an alert message)</code>"""
     AUTOFILTER_TXT = """Help: <b>Auto Filter</b>
 
 <b>NOTE:</b>
-1. Make me the admin of your channel if it's private.
-2. make sure that your channel does not contains camrips, porn and fake files.
-3. Forward the last message to me with quotes.
- I'll add all the files in that channel to my db."""
+1. ᎷᎪᏦᎬ ᎷᎬ ͲᎻᎬ ᎪᎠᎷᏆΝ ϴҒ ᎽϴႮᎡ ᏟᎻᎪΝΝᎬᏞ ᏆҒ ᏆͲ'Տ ᏢᎡᏆᏙᎪͲᎬ.
+2. ᎷᎪᏦᎬ ՏႮᎡᎬ ͲᎻᎪͲ ᎽϴႮᎡ ᏟᎻᎪΝΝᎬᏞ ᎠϴᎬՏ ΝϴͲ ᏟϴΝͲᎪᏆΝՏ ᏟᎪᎷᎡᏆᏢՏ, ᏢϴᎡΝ ᎪΝᎠ ҒᎪᏦᎬ ҒᏆᏞᎬՏ.
+3. ҒϴᎡᏔᎪᎡᎠ ͲᎻᎬ ᏞᎪՏͲ ᎷᎬՏՏᎪᏀᎬ Ͳϴ ᎷᎬ ᏔᏆͲᎻ ϘႮϴͲᎬՏ.
+ Ꮖ'ᏞᏞ ᎪᎠᎠ ᎪᏞᏞ ͲᎻᎬ ҒᏆᏞᎬՏ ᏆΝ ͲᎻᎪͲ ᏟᎻᎪΝΝᎬᏞ Ͳϴ ᎷᎽ ᎠᏴ.""
     CONNECTION_TXT = """Help: <b>Connections</b>
 
-- Used to connect bot to PM for managing filters 
-- it helps to avoid spamming in groups.
+-ႮՏᎬᎠ Ͳϴ ᏟϴΝΝᎬᏟͲ ᏴϴͲ Ͳϴ ᏢᎷ ҒϴᎡ ᎷᎪΝᎪᏀᏆΝᏀ ҒᏆᏞͲᎬᎡՏ 
+- ᏆͲ ᎻᎬᏞᏢՏ Ͳϴ ᎪᏙϴᏆᎠ ՏᏢᎪᎷᎷᏆΝᏀ ᏆΝ ᏀᎡϴႮᏢՏ.
 
 <b>NOTE:</b>
 1. Only admins can add a connection.
@@ -67,7 +71,8 @@ class script(object):
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of Eva Maria
+ͲᎻᎬՏᎬ ᎪᎡᎬ ͲᎻᎬ ᎬХͲᎡᎪ ҒᎬᎪͲႮᎡᎬՏ ϴҒ ᎷᏦ ՏႮᏢᏢϴᎡͲ 🔥
+
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specified user.</code>
@@ -92,10 +97,10 @@ This module only works for my admins
 • /channel - <code>to get list of total connected channels</code>
 • /broadcast - <code>to broadcast a message to all users</code>"""
     STATUS_TXT = """★ 𝚃𝙾𝚃𝙰𝙻 𝙵𝙸𝙻𝙴𝚂: <code>{}</code>
-★ 𝚃𝙾𝚃𝙰𝙻 𝚄𝚂𝙴𝚁𝚂: <code>{}</code>
-★ 𝚃𝙾𝚃𝙰𝙻 𝙲𝙷𝙰𝚃𝚂: <code>{}</code>
-★ 𝚄𝚂𝙴𝙳 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> 𝙼𝚒𝙱
-★ 𝙵𝚁𝙴𝙴 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> 𝙼𝚒𝙱"""
+😻 𝚃𝙾𝚃𝙰𝙻 𝚄𝚂𝙴𝚁𝚂: <code>{}</code>
+😻 𝚃𝙾𝚃𝙰𝙻 𝙲𝙷𝙰𝚃𝚂: <code>{}</code>
+😻 𝚄𝚂𝙴𝙳 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> 𝙼𝚒𝙱
+😻 𝙵𝚁𝙴𝙴 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> 𝙼𝚒𝙱"""
     LOG_TEXT_G = """#NewGroup
 Group = {}(<code>{}</code>)
 Total Members = <code>{}</code>
