@@ -13,6 +13,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp
 from database.users_chats_db import db
+from plugins.heroku3 import *
 from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.filters_mdb import(
    del_all,
@@ -547,8 +548,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         free = 536870912 - monsize
         monsize = get_size(monsize)
         free = get_size(free)
+        timeleft = dyno
         await query.message.edit_text(
-            text=script.STATUS_TXT.format(total, users, chats, monsize, free),
+            text=script.STATUS_TXT.format(total, users, chats, monsize, free, timeleft),
             reply_markup=reply_markup,
             parse_mode='html'
       )
