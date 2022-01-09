@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong, PeerIdInvalid
-from info import ADMINS, LOG_CHANNEL, SUPPORT_CHAT
+from info import ADMINS, LOG_CHANNEL, SUPPORT_CHAT, MELCOW_NEW_USERS
 from database.users_chats_db import db
 from database.ia_filterdb import Media
 from utils import get_size, temp
@@ -45,13 +45,14 @@ async def save_group(bot, message):
             text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
             reply_markup=reply_markup)
     else:
-        for u in message.new_chat_members:
-            if (temp.MELCOW).get('welcome') is not None:
-                try:
-                    await (temp.MELCOW['welcome']).delete()
-                except:
-                    pass
-            temp.MELCOW['welcome'] = await message.reply(f"<b>Hey , {u.mention}, Welcome to {message.chat.title}</b>")
+        if MELCOW_NEW_USERS:
+            for u in message.new_chat_members:
+                if (temp.MELCOW).get('welcome') is not None:
+                    try:
+                        await (temp.MELCOW['welcome']).delete()
+                    except:
+                        pass
+                temp.MELCOW['welcome'] = await message.reply(f"<b>Hey , {u.mention}, Welcome to {message.chat.title}</b>")
 
 
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
@@ -101,7 +102,7 @@ async def disable_chat(bot, message):
         return await message.reply(f"This chat is already disabled:\nReason-<code> {cha_t['reason']} </code>")
     await db.disable_chat(int(chat_), reason)
     temp.BANNED_CHATS.append(int(chat_))
-    await message.reply('Chat Succesfully Disabled')
+    await message.reply('Chat Successfully Disabled')
     try:
         buttons = [[
             InlineKeyboardButton('Support', url=f'https://t.me/{SUPPORT_CHAT}')
@@ -132,7 +133,7 @@ async def re_enable_chat(bot, message):
         return await message.reply('This chat is not yet disabled.')
     await db.re_enable_chat(int(chat_))
     temp.BANNED_CHATS.remove(int(chat_))
-    await message.reply("Chat Succesfully re-enabled")
+    await message.reply("Chat Successfully re-enabled")
 
 
 @Client.on_message(filters.command('stats') & filters.incoming)
@@ -197,7 +198,7 @@ async def ban_a_user(bot, message):
             return await message.reply(f"{k.mention} is already banned\nReason: {jar['ban_reason']}")
         await db.ban_user(k.id, reason)
         temp.BANNED_USERS.append(k.id)
-        await message.reply(f"Succesfully banned {k.mention}")
+        await message.reply(f"Successfully banned {k.mention}")
 
 
     
@@ -230,7 +231,7 @@ async def unban_a_user(bot, message):
             return await message.reply(f"{k.mention} is not yet banned.")
         await db.remove_ban(k.id)
         temp.BANNED_USERS.remove(k.id)
-        await message.reply(f"Succesfully unbanned {k.mention}")
+        await message.reply(f"Successfully unbanned {k.mention}")
 
 
     

@@ -53,7 +53,7 @@ async def addconnection(client,message):
             addcon = await add_connection(str(group_id), str(userid))
             if addcon:
                 await message.reply_text(
-                    f"Sucessfully connected to **{title}**\nNow manage your group from my pm !",
+                    f"Successfully connected to **{title}**\nNow manage your group from my pm !",
                     quote=True,
                     parse_mode="md"
                 )
@@ -72,7 +72,7 @@ async def addconnection(client,message):
             await message.reply_text("Add me as an admin in group", quote=True)
     except Exception as e:
         logger.exception(e)
-        await message.reply_text('Some error occured! Try again later.', quote=True)
+        await message.reply_text('Some error occurred! Try again later.', quote=True)
         return
 
 
