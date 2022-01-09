@@ -75,27 +75,27 @@ class script(object):
 
 
 <b>Commands and Usage:</b>
-• /id - <code>get id of a specified user.</code>
-• /info  - <code>get information about a user.</code>
-• /imdb  - <code>get the film information from IMDb source.</code>
-• /search  - <code>get the film information from various sources.</code>"""
-    ADMIN_TXT = """Help: <b>Admin mods</b>
+• /id - <code>ᏀᎬͲ ᏆᎠ ϴҒ Ꭺ ՏᏢᎬᏟᏆҒᏆᎬᎠ  ႮՏᎬᎡ.</code>
+• /info  - <code>ᏀᎬͲ ᏆΝҒϴᎡᎷᎪͲᏆϴΝ ᎪᏴϴႮͲ Ꭺ ႮՏᎬᎡ.</code>
+• /imdb  - <code>ᏀᎬͲ ͲᎻᎬ ҒᏆᏞᎷ ᏆΝҒϴᎡᎷᎪͲᏆϴΝ ҒᎡϴᎷ ᏆᎷᎠᏴ ՏϴႮᎡᏟᎬ.</code>
+• /search  - <code>ᏀᎬͲ ͲᎻᎬ ҒᏆᏞᎷ ᏆΝҒϴᎡᎷᎪͲᏆϴΝ ҒᎡϴᎷ ᏙᎪᎡᏆϴႮՏ ՏϴႮᎡᏟᎬՏ.</code>"""
+    ADMIN_TXT = """Help: <b>MK mods</b>
 
 <b>NOTE:</b>
-This module only works for my admins
+ͲᎻᏆՏ ᎷϴᎠႮᏞᎬ ϴΝᏞᎽ ᏔϴᎡᏦՏ ҒϴᎡ ᎷᎽ ᎷᏦ🔥
 
 <b>Commands and Usage:</b>
-• /logs - <code>to get the rescent errors</code>
-• /stats - <code>to get status of files in db.</code>
-• /delete - <code>to delete a specific file from db.</code>
-• /users - <code>to get list of my users and ids.</code>
-• /chats - <code>to get list of the my chats and ids </code>
-• /leave  - <code>to leave from a chat.</code>
-• /disable  -  <code>do disable a chat.</code>
-• /ban  - <code>to ban a user.</code>
-• /unban  - <code>to unban a user.</code>
-• /channel - <code>to get list of total connected channels</code>
-• /broadcast - <code>to broadcast a message to all users</code>"""
+• /logs - <code>Ͳϴ ᏀᎬͲ ͲᎻᎬ ᎡᎬՏᏟᎬΝͲ ᎬᎡᎡϴᎡՏ.</code>
+• /stats - <code>Ͳϴ ᏀᎬͲ ՏͲᎪͲႮՏ ϴҒ ҒᏆᏞᎬՏ ᏆΝ ᎠᏴ.</code>
+• /delete - <code>Ͳϴ ᎠᎬᏞᎬͲᎬ Ꭺ ՏᏢᎬᏟᏆҒᏆᏟ ҒᏆᏞᎬ ҒᎡϴᎷ ᎠᏴ</code>
+• /users - <code>Ͳϴ ᏀᎬͲ ᏞᏆՏͲ ϴҒ ᎷᎽ ႮՏᎬᎡՏ ᎪΝᎠ ᏆᎠՏ.</code>
+• /chats - <code>Ͳϴ ᏀᎬͲ ᏞᏆՏͲ ϴҒ ͲᎻᎬ ᎷᎽ ᏟᎻᎪͲՏ ᎪΝᎠ ᏆᎠՏ.</code>
+• /leave  - <code>Ͳϴ ᏞᎬᎪᏙᎬ ҒᎡϴᎷ Ꭺ ᏟᎻᎪͲ.</code>
+• /disable  -  <code>Ꭰϴ ᎠᏆՏᎪᏴᏞᎬ Ꭺ ᏟᎻᎪͲ.</code>
+• /ban  - <code>Ͳϴ ᏴᎪΝ Ꭺ ႮՏᎬᎡ.</code>
+• /unban  - <code>Ͳϴ ႮΝᏴᎪΝ Ꭺ ႮՏᎬᎡ.</code>
+• /channel - <code>Ͳϴ ᏀᎬͲ ᏞᏆՏͲ ϴҒ ͲϴͲᎪᏞ ᏟϴΝΝᎬᏟͲᎬᎠ ᏟᎻᎪΝΝᎬᏞՏ</code>
+• /broadcast - <code>Ͳϴ ᏴᎡϴᎪᎠᏟᎪՏͲ Ꭺ ᎷᎬՏՏᎪᏀᎬ Ͳϴ ᎪᏞᏞ ႮՏᎬᎡՏ</code>"""
     STATUS_TXT = """😻𝚃𝙾𝚃𝙰𝙻 𝙵𝙸𝙻𝙴𝚂: <code>{}</code>
 😻 𝚃𝙾𝚃𝙰𝙻 𝚄𝚂𝙴𝚁𝚂: <code>{}</code>
 😻 𝚃𝙾𝚃𝙰𝙻 𝙲𝙷𝙰𝚃𝚂: <code>{}</code>
