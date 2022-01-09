@@ -44,7 +44,7 @@ async def start(client, message):
             InlineKeyboardButton('➕ ᎪᎠᎠ ᎷᎬ Ͳϴ ᎽϴႮ ᏀᎡϴႮᏢ ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
             InlineKeyboardButton('🔍ՏᎬᎪᎡᏟᎻ ҒᏆᏞᎬՏ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ႮᏢᎠᎪͲᎬՏ🔥', url='https://t.me/TeamEvamaria')
+            InlineKeyboardButton('ႮᏢᎠᎪͲᎬՏ🔥', url='https://t.me/mksupport1')
             ],[
             InlineKeyboardButton('ᎻᎬᏞᏢ💻', callback_data='help'),
             InlineKeyboardButton('ᎪᏴϴႮͲ😻', callback_data='about')
