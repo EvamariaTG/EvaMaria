@@ -4,7 +4,7 @@ EMOJI = "🎯" #use the emoji which supports animation
  
  
 @Client.on_message(
-    filters.command(["roll", "dice"]))
+    filters.command(["roll", "throw"]))
 async def roll_dice(client, message):
     rep_mesg_id = message.message_id
     if message.reply_to_message:
