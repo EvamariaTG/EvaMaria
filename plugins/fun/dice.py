@@ -1,8 +1,4 @@
- from pyrogram import Client, filters
- 
- EMOJI = "🎲" #use the emoji which supports animation
- 
- 
+
 from pyrogram import Client, filters
  
 EMOJI = "🎲" #use the emoji which supports animation
