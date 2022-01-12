@@ -151,78 +151,35 @@ async def start(client, message):
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
         f_msg_id, l_msg_id, f_chat_id = decoded.split("_", 2)
         diff = int(l_msg_id) - int(f_msg_id)
-        if diff <= 200:
-            msgs = await client.get_messages(f_chat_id, list(range(f_msg_id, l_msg_id+1)))
-            f_caption = ''
-            for msg in msgs:
-                if msg.media:
-                    media = getattr(msg, msg.media)
-                    if BATCH_FILE_CAPTION:
-                        try:
-                            f_caption=BATCH_FILE_CAPTION.format(file_name=getattr(media, 'file_name', ''), file_size=getattr(media, 'file_size', ''), file_caption=getattr(msg, 'caption', ''))
-                        except Exception as e:
-                            logger.exception(e)
-                            f_caption = getattr(msg, 'caption', '')
+        async for msg in client.iter_messages(f_chat_id, l_msg_id, f_msg_id):
+            if msg.media:
+                media = getattr(msg, msg.media)
+                if BATCH_FILE_CAPTION:
                     try:
-                        await msg.copy(message.chat.id, caption=f_caption)
-                    except FloodWait as e:
-                        await asyncio.sleep(e.x)
-                        await msg.copy(message.chat.id, caption=f_caption)
+                        f_caption=BATCH_FILE_CAPTION.format(file_name=getattr(media, 'file_name', ''), file_size=getattr(media, 'file_size', ''), file_caption=getattr(msg, 'caption', ''))
                     except Exception as e:
                         logger.exception(e)
-                        continue
-                elif msg.empty:
+                        f_caption = getattr(msg, 'caption', '')
+                try:
+                    await msg.copy(message.chat.id, caption=f_caption)
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    await msg.copy(message.chat.id, caption=f_caption)
+                except Exception as e:
+                    logger.exception(e)
                     continue
-                else:
-                    try:
-                        await msg.copy(message.chat.id)
-                    except FloodWait as e:
-                        await asyncio.sleep(e.x)
-                        await msg.copy(message.chat.id)
-                    except Exception as e:
-                        logger.exception(e)
-                        continue
-                await asyncio.sleep(1) 
-        
-        else:
-            c_msg = f_msg_id
-            while True:
-                new_diff = l_msg_id - c_msg
-                if new_diff > 200:
-                    new_diff = 200
-                elif new_diff <= 0:
-                    break
-                msgs = await client.get_messages(f_chat_id, list(range(c_msg, c_msg+new_diff)))
-                f_caption = ''
-                for msg in msgs:
-                    if msg.media:
-                        media = getattr(msg, msg.media)
-                        if BATCH_FILE_CAPTION:
-                            try:
-                                f_caption=BATCH_FILE_CAPTION.format(file_name=getattr(media, 'file_name', ''), file_size=getattr(media, 'file_size', ''), file_caption=getattr(msg, 'caption', ''))
-                            except Exception as e:
-                                logger.exception(e)
-                                f_caption = getattr(msg, 'caption', '')
-                        try:
-                            await msg.copy(message.chat.id, caption=f_caption)
-                        except FloodWait as e:
-                            await asyncio.sleep(e.x)
-                            await msg.copy(message.chat.id, caption=f_caption)
-                        except Exception as e:
-                            logger.exception(e)
-                            continue
-                    elif msg.empty:
-                        continue
-                    else:
-                        try:
-                            await msg.copy(message.chat.id)
-                        except FloodWait as e:
-                            await asyncio.sleep(e.x)
-                            await msg.copy(message.chat.id)
-                        except Exception as e:
-                            logger.exception(e)
-                            continue
-                    await asyncio.sleep(1) 
+            elif msg.empty:
+                continue
+            else:
+                try:
+                    await msg.copy(message.chat.id)
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    await msg.copy(message.chat.id)
+                except Exception as e:
+                    logger.exception(e)
+                    continue
+            await asyncio.sleep(1) 
         return await sts.delete()
         
 
