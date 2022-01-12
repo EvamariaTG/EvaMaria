@@ -641,8 +641,7 @@ async def auto_filter(client, msg, spoll=False):
             url = imdb['url'],
             **locals()
         )
-    else:
-        cap = f"Here is what i found for your query {search}"
+      
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
@@ -652,8 +651,10 @@ async def auto_filter(client, msg, spoll=False):
             await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
         except Exception as e:
             logger.exception(e)
+            cap = f"Here is what i found for your query {search}"
             await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     else:
+        cap = f"Here is what i found for your query {search}"
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
         await msg.message.delete()
