@@ -9,8 +9,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION
-from utils import get_size, is_subscribed, temp
-from database.settings_db import sett_db
+from utils import get_settings, get_size, is_subscribed, temp
 from database.connections_mdb import active_connection
 import re
 import json
@@ -74,7 +73,9 @@ async def start(client, message):
         ]
 
         if message.command[1] != "subscribe":
-            btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{message.command[1]}")])
+            kk, file_id = message.command[1].split("_", 1)
+            pre = 'checksubp' if kk == 'filep' else 'checksub' 
+            btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{message.command[1]}")])
         await client.send_message(
             chat_id=message.from_user.id,
             text="**Please Join My Updates Channel to use this Bot!**",
@@ -82,7 +83,7 @@ async def start(client, message):
             parse_mode="markdown"
             )
         return
-    if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
+    if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
             InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
@@ -100,14 +101,12 @@ async def start(client, message):
             parse_mode='html'
         )
         return
-    file_id = message.command[1]
+    data = message.command[1]
+    pre, file_id = data.split('_', 1)
 
-    grpid = await active_connection(str(message.from_user.id))
-    settings = await sett_db.get_settings(str(grpid))
-
-    if file_id.split("-", 1)[0] == "BATCH":
+    if data.split("-", 1)[0] == "BATCH":
         sts = await message.reply("Please wait")
-        file_id = file_id.split("-", 1)[1]
+        file_id = data.split("-", 1)[1]
         msgs = BATCH_FILES.get(file_id)
         if not msgs:
             file = await client.download_media(file_id)
@@ -153,9 +152,9 @@ async def start(client, message):
             await asyncio.sleep(1) 
         await sts.delete()
         return
-    elif file_id.split("-", 1)[0] == "DSTORE":
+    elif data.split("-", 1)[0] == "DSTORE":
         sts = await message.reply("Please wait")
-        b_string = file_id.split("-", 1)[1]
+        b_string = data.split("-", 1)[1]
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
         f_msg_id, l_msg_id, f_chat_id = decoded.split("_", 2)
         diff = int(l_msg_id) - int(f_msg_id)
@@ -197,7 +196,7 @@ async def start(client, message):
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
-                protect_content=settings["file_secure"],
+                protect_content=True if pre == 'filep' else False,
                 )
             filetype = msg.media
             file = getattr(msg, filetype)
@@ -230,7 +229,7 @@ async def start(client, message):
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
-        protect_content=settings["file_secure"],
+        protect_content=True if pre == 'filep' else False,
         )
                     
 
@@ -350,13 +349,12 @@ async def delete_all_index_confirm(bot, message):
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
 
 
-@Client.on_message(filters.command('settings') & filters.private)
+@Client.on_message(filters.command('settings'))
 async def settings(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     chat_type = message.chat.type
-    args = message.text.html.split(None, 1)
 
     if chat_type == "private":
         grpid = await active_connection(str(userid))
@@ -387,50 +385,76 @@ async def settings(client, message):
     ):
         return
 
-    if not await sett_db.is_settings_exist(str(grp_id)):
-        await sett_db.add_settings(str(grp_id), True)
-
-    settings = await sett_db.get_settings(str(grp_id))
+    settings = await get_settings(grp_id)
 
     if settings is not None:
         buttons = [
             [
-                InlineKeyboardButton('Filter Button', callback_data=f'setgs#button#{settings["button"]}#{str(grp_id)}'),
-                InlineKeyboardButton('Single' if settings["button"] else 'Double',
-                                     callback_data=f'setgs#button#{settings["button"]}#{str(grp_id)}')
+                InlineKeyboardButton(
+                    'Filter Button',
+                    callback_data=f'setgs#button#{settings["button"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    'Single' if settings["button"] else 'Double',
+                    callback_data=f'setgs#button#{settings["button"]}#{grp_id}',
+                ),
             ],
             [
-                InlineKeyboardButton('Bot PM', callback_data=f'setgs#botpm#{settings["botpm"]}#{str(grp_id)}'),
-                InlineKeyboardButton('✅ Yes' if settings["botpm"] else '❌ No',
-                                     callback_data=f'setgs#botpm#{settings["botpm"]}#{str(grp_id)}')
+                InlineKeyboardButton(
+                    'Bot PM',
+                    callback_data=f'setgs#botpm#{settings["botpm"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["botpm"] else '❌ No',
+                    callback_data=f'setgs#botpm#{settings["botpm"]}#{grp_id}',
+                ),
             ],
             [
-                InlineKeyboardButton('File Secure',
-                                     callback_data=f'setgs#file_secure#{settings["file_secure"]}#{str(grp_id)}'),
-                InlineKeyboardButton('✅ Yes' if settings["file_secure"] else '❌ No',
-                                     callback_data=f'setgs#file_secure#{settings["file_secure"]}#{str(grp_id)}')
+                InlineKeyboardButton(
+                    'File Secure',
+                    callback_data=f'setgs#file_secure#{settings["file_secure"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["file_secure"] else '❌ No',
+                    callback_data=f'setgs#file_secure#{settings["file_secure"]}#{grp_id}',
+                ),
             ],
             [
-                InlineKeyboardButton('IMDB', callback_data=f'setgs#imdb#{settings["imdb"]}#{str(grp_id)}'),
-                InlineKeyboardButton('✅ Yes' if settings["imdb"] else '❌ No',
-                                     callback_data=f'setgs#imdb#{settings["imdb"]}#{str(grp_id)}')
+                InlineKeyboardButton(
+                    'IMDB',
+                    callback_data=f'setgs#imdb#{settings["imdb"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["imdb"] else '❌ No',
+                    callback_data=f'setgs#imdb#{settings["imdb"]}#{grp_id}',
+                ),
             ],
             [
-                InlineKeyboardButton('Spell Check',
-                                     callback_data=f'setgs#spell_check#{settings["spell_check"]}#{str(grp_id)}'),
-                InlineKeyboardButton('✅ Yes' if settings["spell_check"] else '❌ No',
-                                     callback_data=f'setgs#spell_check#{settings["spell_check"]}#{str(grp_id)}')
+                InlineKeyboardButton(
+                    'Spell Check',
+                    callback_data=f'setgs#spell_check#{settings["spell_check"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["spell_check"] else '❌ No',
+                    callback_data=f'setgs#spell_check#{settings["spell_check"]}#{grp_id}',
+                ),
             ],
             [
-                InlineKeyboardButton('Welcome', callback_data=f'setgs#welcome#{settings["welcome"]}#{str(grp_id)}'),
-                InlineKeyboardButton('✅ Yes' if settings["welcome"] else '❌ No',
-                                     callback_data=f'setgs#welcome#{settings["welcome"]}#{str(grp_id)}')
-            ]
+                InlineKeyboardButton(
+                    'Welcome',
+                    callback_data=f'setgs#welcome#{settings["welcome"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["welcome"] else '❌ No',
+                    callback_data=f'setgs#welcome#{settings["welcome"]}#{grp_id}',
+                ),
+            ],
         ]
+
         reply_markup = InlineKeyboardMarkup(buttons)
 
         await message.reply_text(
-            text="<b>Change Your Filter Settings As Your Wish ⚙</b>",
+            text=f"<b>Change Your Settings for {title} As Your Wish ⚙</b>",
             reply_markup=reply_markup,
             disable_web_page_preview=True,
             parse_mode="html",
