@@ -104,6 +104,16 @@ class Database:
             reason="",
             )
         await self.grp.update_one({'id': int(id)}, {'$set': {'chat_status': chat_status}})
+        
+    async def update_settings(self, id, settings):
+        await self.grp.update_one({'id': int(id)}, {'$set': {'settings': settings}})
+        
+    
+    async def get_settings(self, id):
+        chat = await self.grp.find_one({'id':int(id)})
+        if chat:
+            return chat.get('settings', {})
+        return {}
     
 
     async def disable_chat(self, chat, reason="No Reason"):
