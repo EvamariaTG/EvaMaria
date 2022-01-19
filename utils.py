@@ -38,6 +38,7 @@ class temp(object):
     MELCOW = {}
     U_NAME = None
     B_NAME = None
+    SETTINGS = {}
 
 async def is_subscribed(bot, query):
     try:
@@ -167,8 +168,19 @@ async def search_gagala(text):
     return [title.getText() for title in titles]
 
 
-
-
+async def get_settings(group_id):
+    settings = temp.SETTINGS.get(group_id)
+    if not settings:
+        settings = await db.get_settings(group_id)
+        temp.SETTINGS[group_id] = settings
+    return settings
+    
+async def save_group_settings(group_id, key, value):
+    current = await get_settings(group_id)
+    current[key] = value
+    temp.SETTINGS[group_id] = current
+    await db.update_settings(group_id, current)
+    
 def get_size(size):
     """Get size in readable format"""
 
