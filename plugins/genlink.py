@@ -13,7 +13,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-@Client.on_message(filters.command(['link', 'plink']) & filters.user(ADMINS))
+@Client.on_message(filters.command(['link', 'plink']))
 async def gen_link_s(bot, message):
     replied = message.reply_to_message
     if not replied:
@@ -21,6 +21,8 @@ async def gen_link_s(bot, message):
     file_type = replied.media
     if file_type not in ["video", 'audio', 'document']:
         return await message.reply("Reply to a supported media")
+    if message.has_protected_content and message.chat.id not in ADMINS:
+        return await message.reply("okDa")
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     string = 'filep_' if message.text.lower().strip() == "/plink" else 'file_'
     string += file_id
@@ -28,7 +30,7 @@ async def gen_link_s(bot, message):
     await message.reply(f"Here is your Link:\nhttps://t.me/{temp.U_NAME}?start={outstr}")
     
     
-@Client.on_message(filters.command(['batch', 'pbatch']) & filters.user(ADMINS))
+@Client.on_message(filters.command(['batch', 'pbatch']))
 async def gen_link_batch(bot, message):
     if " " not in message.text:
         return await message.reply("Use correct format.\nExample <code>/batch https://t.me/TeamEvamaria/10 https://t.me/TeamEvamaria/20</code>.")
@@ -69,11 +71,11 @@ async def gen_link_batch(bot, message):
         string = f"{f_msg_id}_{l_msg_id}_{chat_id}_{cmd.lower().strip()}"
         b_64 = base64.urlsafe_b64encode(string.encode("ascii")).decode().strip("=")
         return await sts.edit(f"Here is your link https://t.me/{temp.U_NAME}?start=DSTORE-{b_64}")
- 
+
     FRMT = "Generating Link...\nTotal Messages: `{total}`\nDone: `{current}`\nRemaining: `{rem}`\nStatus: `{sts}`"
 
     outlist = []
-    
+
     # file store without db channel
     og_msg = 0
     tot = 0
@@ -96,8 +98,9 @@ async def gen_link_batch(bot, message):
                     "caption": caption,
                     "title": getattr(file, "file_name", ""),
                     "size": file.file_size,
-                    "protect": True if cmd.lower().strip() == "/pbatch" else False
+                    "protect": cmd.lower().strip() == "/pbatch",
                 }
+
                 og_msg +=1
                 outlist.append(file)
         except:

@@ -92,10 +92,7 @@ class Database:
 
     async def get_chat(self, chat):
         chat = await self.grp.find_one({'id':int(chat)})
-        if not chat:
-            return False
-        else:
-            return chat.get('chat_status')
+        return False if not chat else chat.get('chat_status')
     
 
     async def re_enable_chat(self, id):
