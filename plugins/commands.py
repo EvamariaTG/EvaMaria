@@ -8,7 +8,7 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT
 from utils import get_settings, get_size, is_subscribed, temp
 from database.connections_mdb import active_connection
 import re
@@ -135,7 +135,7 @@ async def start(client, message):
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
-                    protect_content=settings["file_secure"],
+                    protect_content=msg.get('protect', False),
                     )
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -144,7 +144,7 @@ async def start(client, message):
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
-                    protect_content=settings["file_secure"],
+                    protect_content=msg.get('protect', False),
                     )
             except Exception as e:
                 logger.warning(e, exc_info=True)
@@ -156,7 +156,11 @@ async def start(client, message):
         sts = await message.reply("Please wait")
         b_string = data.split("-", 1)[1]
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
-        f_msg_id, l_msg_id, f_chat_id = decoded.split("_", 2)
+        try:
+            f_msg_id, l_msg_id, f_chat_id, protect = decoded.split("_", 3)
+        except:
+            f_msg_id, l_msg_id, f_chat_id = decoded.split("_", 2)
+            protect = "/pbatch" if PROTECT_CONTENT else "batch"
         diff = int(l_msg_id) - int(f_msg_id)
         async for msg in client.iter_messages(int(f_chat_id), int(l_msg_id), int(f_msg_id)):
             if msg.media:
@@ -168,10 +172,10 @@ async def start(client, message):
                         logger.exception(e)
                         f_caption = getattr(msg, 'caption', '')
                 try:
-                    await msg.copy(message.chat.id, caption=f_caption, protect_content=settings["file_secure"])
+                    await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
-                    await msg.copy(message.chat.id, caption=f_caption, protect_content=settings["file_secure"])
+                    await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
                 except Exception as e:
                     logger.exception(e)
                     continue
@@ -179,10 +183,10 @@ async def start(client, message):
                 continue
             else:
                 try:
-                    await msg.copy(message.chat.id, protect_content=settings["file_secure"])
+                    await msg.copy(message.chat.id, protect_content=True if protect == "/pbatch" else False)
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
-                    await msg.copy(message.chat.id, protect_content=settings["file_secure"])
+                    await msg.copy(message.chat.id, protect_content=True if protect == "/pbatch" else False)
                 except Exception as e:
                     logger.exception(e)
                     continue
@@ -192,6 +196,7 @@ async def start(client, message):
 
     files_ = await get_file_details(file_id)           
     if not files_:
+        pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,

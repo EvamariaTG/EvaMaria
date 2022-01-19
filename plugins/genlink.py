@@ -13,7 +13,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-@Client.on_message(filters.command('link') & filters.user(ADMINS))
+@Client.on_message(filters.command(['link', 'plink']) & filters.user(ADMINS))
 async def gen_link_s(bot, message):
     replied = message.reply_to_message
     if not replied:
@@ -22,17 +22,20 @@ async def gen_link_s(bot, message):
     if file_type not in ["video", 'audio', 'document']:
         return await message.reply("Reply to a supported media")
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
-    await message.reply(f"Here is your Link:\nhttps://t.me/{temp.U_NAME}?start={file_id}")
+    string = 'filep_' if message.text.lower().strip() == "/plink" else 'file_'
+    string += file_id
+    outstr = base64.urlsafe_b64encode(string.encode("ascii")).decode().strip("=")
+    await message.reply(f"Here is your Link:\nhttps://t.me/{temp.U_NAME}?start={outstr}")
     
     
-@Client.on_message(filters.command('batch') & filters.user(ADMINS))
+@Client.on_message(filters.command(['batch', 'pbatch']) & filters.user(ADMINS))
 async def gen_link_batch(bot, message):
     if " " not in message.text:
         return await message.reply("Use correct format.\nExample <code>/batch https://t.me/TeamEvamaria/10 https://t.me/TeamEvamaria/20</code>.")
     links = message.text.strip().split(" ")
     if len(links) != 3:
         return await message.reply("Use correct format.\nExample <code>/batch https://t.me/TeamEvamaria/10 https://t.me/TeamEvamaria/20</code>.")
-    _, first, last = links
+    cmd, first, last = links
     regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
     match = regex.match(first)
     if not match:
@@ -63,7 +66,7 @@ async def gen_link_batch(bot, message):
 
     sts = await message.reply("Generating link for your message.\nThis may take time depending upon number of messages")
     if chat_id in FILE_STORE_CHANNEL:
-        string = f"{f_msg_id}_{l_msg_id}_{chat_id}"
+        string = f"{f_msg_id}_{l_msg_id}_{chat_id}_{cmd.lower().strip()}"
         b_64 = base64.urlsafe_b64encode(string.encode("ascii")).decode().strip("=")
         return await sts.edit(f"Here is your link https://t.me/{temp.U_NAME}?start=DSTORE-{b_64}")
  
@@ -93,6 +96,7 @@ async def gen_link_batch(bot, message):
                     "caption": caption,
                     "title": getattr(file, "file_name", ""),
                     "size": file.file_size,
+                    "protect": True if cmd.lower().strip() == "/pbatch" else False
                 }
                 og_msg +=1
                 outlist.append(file)
