@@ -36,10 +36,10 @@ async def save_group(bot, message):
                 pass
             await bot.leave_chat(message.chat.id)
             return
-        buttons = [[
-            InlineKeyboardButton('ℹ️ Help', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            InlineKeyboardButton('📢 Updates', url='https://t.me/TeamEvamaria')
-        ]]
+        buttons = [
+        InlineKeyboardButton('Group', url='https://t.me/BlasterMovieszz'),
+        InlineKeyboardButton('Latest Movies', url='https://t.me/blasters_monthly')
+        ]
         reply_markup=InlineKeyboardMarkup(buttons)
         await message.reply_text(
             text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
@@ -66,9 +66,10 @@ async def leave_a_chat(bot, message):
     except:
         chat = chat
     try:
-        buttons = [[
-            InlineKeyboardButton('Support', url=f'https://t.me/{SUPPORT_CHAT}')
-        ]]
+        buttons = [
+        InlineKeyboardButton('Group', url='https://t.me/BlasterMovieszz'),
+        InlineKeyboardButton('Latest Movies', url='https://t.me/blasters_monthly')
+        ]
         reply_markup=InlineKeyboardMarkup(buttons)
         await bot.send_message(
             chat_id=chat,
@@ -105,9 +106,10 @@ async def disable_chat(bot, message):
     temp.BANNED_CHATS.append(int(chat_))
     await message.reply('Chat Successfully Disabled')
     try:
-        buttons = [[
-            InlineKeyboardButton('Support', url=f'https://t.me/{SUPPORT_CHAT}')
-        ]]
+        buttons = [
+        InlineKeyboardButton('Group', url='https://t.me/BlasterMovieszz'),
+        InlineKeyboardButton('Latest Movies', url='https://t.me/blasters_monthly')
+        ]
         reply_markup=InlineKeyboardMarkup(buttons)
         await bot.send_message(
             chat_id=chat_, 
