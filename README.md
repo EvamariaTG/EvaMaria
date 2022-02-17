@@ -110,7 +110,7 @@ python3 bot.py
 [![telegram badge](https://img.shields.io/badge/Telegram-Channel-30302f?style=flat&logo=telegram)](https://t.me/calledobotupdates)
 
 ## Credits 
-* [![CalledoBots](https://img.shields.io/static/v1?label=EvaMaria&message=devs&color=critical)](https://t.me/calledobotupdates)
+* [![CalledoBots](https://img.shields.io/static/v1?label=CalledoBots&message=devs&color=critical)](https://t.me/calledobotupdates)
 
 
 ## Thanks to 
