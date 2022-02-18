@@ -10,8 +10,11 @@ logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
 
 async def inline_users(query: InlineQuery):
-    if AUTH_USERS and query.from_user and query.from_user.id in AUTH_USERS:
-        return True
+    if AUTH_USERS:
+        if query.from_user and query.from_user.id in AUTH_USERS:
+            return True
+        else:
+            return False
     if query.from_user and query.from_user.id not in temp.BANNED_USERS:
         return True
     return False
