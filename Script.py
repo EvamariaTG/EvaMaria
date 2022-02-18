@@ -10,6 +10,11 @@ class script(object):
 ✯ 𝙳𝙰𝚃𝙰 𝙱𝙰𝚂𝙴: 𝙼𝙾𝙽𝙶𝙾 𝙳𝙱
 ✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: 𝙷𝙴𝚁𝙾𝙺𝚄
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
+
+    SP_TXT ="""🥺 Dear {message.from_user.mention}
+Sorry  bro,..{search} No Movie/Series Related to the Given Word Was Found 🥺
+\n<i>Please Go to Google and Confirm the Correct Spelling 🥺🙏"""
+
     SOURCE_TXT = """<b>NOTE:</b>
 - Calledo Bot is a open source project. 
 - Source - https://github.com/calledo/CalledoGamingBot
