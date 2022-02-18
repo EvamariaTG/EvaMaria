@@ -570,7 +570,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton(text=f"{file.file_name}", callback_data=f'files#{file_id}'), InlineKeyboardButton(text=f"{get_size(file.file_size)}", callback_data=f'files_#{file_id}')]
                     )
         else:
-            m = await message.reply_video(video="", Caption=script.SP_TXT
+            m = await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.SP_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
           reply_markup=InlineKeyboardMarkup(
                 [
                     [
