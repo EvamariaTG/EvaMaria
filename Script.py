@@ -11,14 +11,15 @@ class script(object):
 ✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: 𝙷𝙴𝚁𝙾𝙺𝚄
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
-- Eva Maria is a open source project. 
+- open source project. 
 - Source - https://github.com/illuzX/MVB
 
 <b>DEVS:</b>
 - <a href=https://t.me/grayhathacker676>illuZx</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
-- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
+- Filter is the feature were users can set automated replies for a particularkeyword and
+  meenu will respond whenever a keywordfound the message
 
 <b>NOTE:</b>
 1. meenu should have admin privillage.
@@ -67,8 +68,7 @@ class script(object):
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of Eva Maria
-
+these are the extra features of meenu
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specified user.</code>
 • /info  - <code>get information about a user.</code>
@@ -101,7 +101,7 @@ Group = {}(<code>{}</code>)
 Total Members = <code>{}</code>
 Added By - {}
 """
-    LOG_TEXT_P = """#NewUser
+    LOG_TEXT_P = """#oneuserfound
 ID - <code>{}</code>
 Name - {}
 """
