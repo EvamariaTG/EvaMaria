@@ -705,8 +705,8 @@ async def auto_filter(client, msg, spoll=False):
             plot=imdb['plot'],
             rating=imdb['rating'],
             url=imdb['url'],
-            **locals()
             © Bot Managed By @ArkBotz
+            **locals()
         )
     else:
         cap = f"© Bot Managed By @ArkBotz ★Here is what i found for your query {search}"
