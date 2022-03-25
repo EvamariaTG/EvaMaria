@@ -44,7 +44,7 @@ async def next_page(bot, query):
         return await query.answer("Bruh pleaseask you're request don't lazzy", show_alert=True)
 async def BUTTONS(bot, query):
     ident, req, key, offset = query.data.split
-      ("_")
+      ('_')
     if int(req) not in [query.from_user.id, 0]
         return await query.answer("Its not for u", show_alert=True)
     try:
