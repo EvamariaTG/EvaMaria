@@ -11,11 +11,12 @@ class script(object):
 ✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: 𝙷𝙴𝚁𝙾𝙺𝚄
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
-- open source project. 
-- Source - https://github.com/illuzX/MVB
-
+- Eva maria. 
+- Source -[Source]{https://github.com/illuzX/MVB}
+**Disclaimer**
+im Not Owner Of This Source Code I Just Modified Some Modules so Its A Clone Project (From A Vazhatham)
 <b>DEVS:</b>
-- <a href=https://t.e/grayhathacker676>illuZx</a>"""
+- <a href=https://t.e/grayhathacker676>Team Eva&IlluzX </a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
 - Filter is the feature were users can set automated replies for a particularkeyword and
@@ -101,7 +102,7 @@ Group = {}(<code>{}</code>)
 Total Members = <code>{}</code>
 Added By - {}
 """
-    LOG_TEXT_P = """#oneuserfound
+    LOG_TEXT_P = """#newuserfound
 ID - <code>{}</code>
 Name - {}
 """
