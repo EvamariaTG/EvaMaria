@@ -26,7 +26,7 @@ async def answer(bot, query):
     if not await inline_users(query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='okDa',
+                           switch_pm_text='𝗬𝗼𝘂 𝗛𝗮𝘃𝗲 𝗧𝗼 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝗙𝗼𝗿 𝗨𝘀𝗶𝗻𝗴 𝗠𝗲 𝗜𝗻𝗹𝗶𝗻𝗲',
                            switch_pm_parameter="hehe")
         return
 
@@ -70,11 +70,11 @@ async def answer(bot, query):
                 title=file.file_name,
                 file_id=file.file_id,
                 caption=f_caption,
-                description=f'Size: {get_size(file.file_size)}\nType: {file.file_type}',
+                description=f'Size: {get_size(file.file_size)}\nFileName: {file.caption}',
                 reply_markup=reply_markup))
 
     if results:
-        switch_pm_text = f"{emoji.FILE_FOLDER} Results - {total}"
+        switch_pm_text = f"{emoji.FILE_FOLDER} Saved Files"
         if string:
             switch_pm_text += f" for {string}"
         try:
@@ -103,7 +103,8 @@ async def answer(bot, query):
 def get_reply_markup(query):
     buttons = [
         [
-            InlineKeyboardButton('Search again', switch_inline_query_current_chat=query)
+            InlineKeyboardButton('SEARCH AGAIN', switch_inline_query_current_chat=query)],
+            [InlineKeyboardButton('SEARCH MOVIES', switch_inline_query_current_chat=""),
         ]
         ]
     return InlineKeyboardMarkup(buttons)
