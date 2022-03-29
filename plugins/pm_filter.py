@@ -704,7 +704,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"Here is what i found for your query {search}"
+        cap = f"Here Is What I Found For Your Query {search}"
     if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
@@ -772,7 +772,7 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await msg.reply("<b>Hey {uso} I Cant Find Anything Related To Your Search\nDid You Mean Any One Of These?</b> 👇",
+    await msg.reply("Hey {uso} I Cant Find Anything Related To Your Search\nDid You Mean Any One Of These? 👇",
                     reply_markup=InlineKeyboardMarkup(btn))
 
 
