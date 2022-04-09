@@ -134,9 +134,13 @@ async def imdb_search(client, message):
         r, title = message.text.split(None, 1)
         movies = await get_poster(title, bulk=True)
         if not movies:
-            return await message.reply("No results Found")
-        btn = [
-            [
+            return await message.reply(
+                text="""🙄 No results found, check spelling on google."""
+                reply_markup=Inlinekeyboardmarkup(
+                                   [[
+                                    InlineKeyboardButton('🔡 Check Spelling', url='https://google.com/search?q={imdb.get('title')}").replace(' ', '-'))
+                                             ]])
+        btn = [[
                 InlineKeyboardButton(
                     text=f"{movie.get('title')} - {movie.get('year')}",
                     callback_data=f"imdb#{movie.movieID}",
@@ -144,22 +148,21 @@ async def imdb_search(client, message):
             ]
             for movie in movies
         ]
-        await k.edit('Here is what i found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
+        await k.edit('👀 Here are the results which i fount on IMDb', reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply('Give me a movie / series Name')
+        await message.reply('🙅 Pass me a value like <code>/imdb Jolly LLB 2</code>'
+                           pharse_mode='html')
 
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot: Client, quer_y: CallbackQuery):
     i, movie = quer_y.data.split('#')
     imdb = await get_poster(query=movie, id=True)
-    btn = [
-            [
+    btn = [[
                 InlineKeyboardButton(
-                    text=f"{imdb.get('title')}",
-                    url=imdb['url'],
+                    text=f"📥 {imdb.get('title')}",
+                    url=f"https://hagadmansa.com/movies/{imdb.get('title')}".replace(' ', '-')
                 )
-            ]
-        ]
+            ]]
     message = quer_y.message.reply_to_message or quer_y.message
     if imdb:
         caption = IMDB_TEMPLATE.format(
