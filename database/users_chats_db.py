@@ -1,4 +1,4 @@
-# https://github.com/odysseusmax/animated-lamp/blob/master/bot/database/database.py
+# https://github.com/hopepsycho/animated-lamp/blob/master/bot/database/database.py
 import motor.motor_asyncio
 from info import DATABASE_NAME, DATABASE_URI
 
