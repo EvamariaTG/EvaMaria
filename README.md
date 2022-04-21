@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.jpg" alt="kunajppan2.0 Logo">
+  <img src="logo.jpg" alt="kunajppan2.0 Logo">
 </p>
 <h1 align="center">
   <b>kunjappan 2.0</b>
