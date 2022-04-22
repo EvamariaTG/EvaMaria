@@ -104,7 +104,7 @@ python3 bot.py
 [![telegram badge](https://img.shields.io/badge/Telegram-Channel-30302f?style=flat&logo=telegram)](https://telegram.dog/KUNJAPPANSUPPORTEZ)
 
 ## Credits 
-* [![EvaMaria-Devs](https://img.shields.io/static/v1?label=EvaMaria&message=devs&color=critical)](https://telegram.dog/kunjappandevs)
+* [![kunjappan](https://img.shields.io/static/v1?label=kunjappan&message=devs&color=critical)](https://telegram.dog/kunjappandevs)
 
 
 ## Thanks to 
