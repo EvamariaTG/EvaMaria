@@ -723,4 +723,3 @@ async def advantage_spell_chok(msg):
     btn.append([InlineKeyboardButton(text="Cʟᴏsᴇ", callback_data=f'spolling#{user}#close_spellcheck')])
     await msg.reply("I ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ\nDɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?", reply_markup=InlineKeyboardMarkup(btn))
     
-
