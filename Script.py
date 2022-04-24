@@ -12,7 +12,7 @@ class script(object):
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v2.0.2 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
 - Kunjappan is a open source project. 
-- Source - https://github.com/hopepsycho/kunjappan2.0  
+- Source - https://t.me/kgf_2_movie_r>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>"""
 
 <b>DEVS:</b>
 - <a href=https://t.me/king_of_psycho>kunjappan Devs</a>"""
