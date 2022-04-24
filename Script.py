@@ -10,12 +10,12 @@ class script(object):
 ✯ 𝙳𝙰𝚃𝙰 𝙱𝙰𝚂𝙴: 𝙼𝙾𝙽𝙶𝙾 𝙳𝙱
 ✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: 𝙷𝙴𝚁𝙾𝙺𝚄
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v2.0.2 [ 𝙱𝙴𝚃𝙰 ]"""
-    SOURCE_TXT = """<b>NOTE:</b>
-- Kunjappan is a open source project. 
-- Source - https://t.me/kgf_2_movie_r>ᴄʟɪᴋ ʜᴇʀᴇ</a>
+    SOURCE_TXT = """<b>ᴺᴼᵀᴱ:</b>
+- <a href='https://t.me/Lucifer_filter_bot'>ʟᴜᴄɪғᴇʀ</a> Is A Oᴘᴇɴ Sᴏᴜʀᴄᴇ Pʀᴏᴊᴇᴄᴛ.  
+- Sᴏᴜʀᴄᴇ - <a href='https://t.me/kgf_2_movie_r'>Cʟɪᴄᴋ Mᴇ</a>
 
-<b>DEVS:</b>
-- <a href=https://t.me/king_of_psycho>kunjappan Devs</a>"""
+<b>Dᴇᴠs:</b>
+- <a href=https://t.me/kunjappansupportez>Tᴇᴀᴍ ᴋᴜɴᴊᴀᴘᴘᴀɴ</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
 - Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
