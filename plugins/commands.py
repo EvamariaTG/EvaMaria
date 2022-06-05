@@ -17,6 +17,8 @@ import base64
 logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
+BTN = InlineKeyboardMarkup([[ InlineKeyboardButton('❣️ 𝙾𝚄𝚁 𝙲𝙷𝙰𝙽𝙽𝙴𝙻 ❣️', url='https://t.me/all_movies_official') ]])
+                    
 
 @Client.on_message(filters.command("start") & filters.incoming & ~filters.edited)
 async def start(client, message):
@@ -81,13 +83,13 @@ async def start(client, message):
                 btn.append([InlineKeyboardButton(" 🔄 Try Again", url=f"https://t.me/{temp.U_NAME}/{message.command[1]}")])
         await client.send_message(
             chat_id=message.from_user.id,
-            text="**♦️ READ THIS INSTRUCTION ♦️
+            text="""**♦️ READ THIS INSTRUCTION ♦️
 
 🗣 നിങ്ങൾ ചോദിക്കുന്ന സിനിമകൾ നിങ്ങൾക്ക് ലഭിക്കണം എന്നുണ്ടെങ്കിൽ നിങ്ങൾ താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്യണം ജോയിൻ ചെയ്ത ശേഷം വീണ്ടും ഗ്രൂപ്പിൽ പോയി ആ ബട്ടനിൽ അമർത്തിയാൽ നിങ്ങൾക്ക് ഞാൻ ആ സിനിമ പ്രൈവറ്റ് ആയി അയച്ചു തരുന്നതാണ് 😍
 
 🗣 In Order To Get The Movie Requested By You in Our Groups You Will Have To Join Our Official Channel First After That Try Accessing That Movie Again From Our Group Ill Send You That Movie Privately 🙈
 
-👇 JOIN THIS CHANNEL And TRY 👇**",
+👇 JOIN THIS CHANNEL And TRY 👇**""",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode="markdown"
             )
