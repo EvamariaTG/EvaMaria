@@ -7,12 +7,10 @@ class script(object):
 ✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/RelaxroomBkp>Team Relaxroom</a>"""
 
     SOURCE_TXT = """Source - https://github.com/RealGaurv/autofilterbot 
-
-<b>DEVS:</b>
-- <a href=https://t.me/RelaxrooBkp>Team Relaxroom</a>"""
+"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
-- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
+- Filter is the feature were users can set automated replies for a particular keyword and RRMBot will respond whenever a keyword is found the message
 
 <b>NOTE:</b>
 1. eva maria should have admin privillage.
@@ -24,9 +22,28 @@ class script(object):
 • /filters - <code>list all the filters of a chat</code>
 • /del - <code>delete a specific filter in chat</code>
 • /delall - <code>delete the whole filters in a chat (chat owner only)</code>"""
-   
+    BUTTON_TXT = """Help: <b>Buttons</b>
 
-  CONNECTION_TXT = """Help: <b>Connections</b>
+- RRMBot Supports both url and alert inline buttons.
+
+<b>NOTE:</b>
+1. Telegram will not allows you to send buttons without any content, so content is mandatory.
+2. Eva Maria supports buttons with any telegram media type.
+3. Buttons should be properly parsed as markdown format
+
+<b>URL buttons:</b>
+<code>[Button Text](buttonurl:https://t.me/EvaMariaBot)</code>
+
+<b>Alert buttons:</b>
+<code>[Button Text](buttonalert:This is an alert message)</code>"""
+    AUTOFILTER_TXT = """Help: <b>Auto Filter</b>
+
+<b>NOTE:</b>
+1. Make me the admin of your channel if it's private.
+2. make sure that your channel does not contains camrips, porn and fake files.
+3. Forward the last message to me with quotes.
+ I'll add all the files in that channel to my db."""
+    CONNECTION_TXT = """Help: <b>Connections</b>
 
 - Used to connect bot to PM for managing filters 
 - it helps to avoid spamming in groups.
