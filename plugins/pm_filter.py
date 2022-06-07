@@ -408,8 +408,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ], [
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
             InlineKeyboardButton('🤖 Updates', url='https://t.me/RelaxroomBkp')
-        ], [
-            InlineKeyboardButton('ℹ️ Admin', callback_data='help', url='https://t.me/NE069')
+  
           
 
 
