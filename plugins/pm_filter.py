@@ -28,7 +28,7 @@ logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
-BTN = InlineKeyboardMarkup([[ InlineKeyboardButton('🚀 𝙾𝚄𝚁 𝙲𝙷𝙰𝙽𝙽𝙴𝙻 🚀', url='https://t.me/mkn_bots_updates') ]]) 
+BTN = InlineKeyboardMarkup([[ InlineKeyboardButton('❣️ 𝙾𝚄𝚁 𝙲𝙷𝙰𝙽𝙽𝙴𝙻 ❣️', url='https://t.me/all_movies_official') ]]) 
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client, message):
