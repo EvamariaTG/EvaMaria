@@ -8,7 +8,7 @@ Here Is The Help For My Commands."""
 ◉ <b>Library :</b> <a href='https://docs.pyrogram.org/'>Pyrogram</a>
 ◉ <b>Language :</b> <a href='https://www.python.org/'>Python 3</a>
 ◉ <b>Bot Server :</b> <a href='https://heroku.com/'>HEROKU</a>
-◉ <b>Channel :</b> @Movies_Emperio
+◉ <b>Channel :</b> @MoviesEmperio
 ◉ <b>Group :</b> @Cinemas_Empire
 ◉ <b>Build Status :</b> v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
