@@ -4,18 +4,18 @@ I Can Provide Movies & Series, Just Add Me To Your Group and Enjoy. Also You Can
     HELP_TXT = """Hey {}
 Here Is The Help For My Commands."""
     ABOUT_TXT = """◉ <b>My Name Is</b> <a href='https://t.me/MoviesEmporioFilter_Bot'>𝐌𝐎𝐕𝐈𝐄𝐒 𝐄𝐌𝐏𝐎𝐑𝐈𝐎 💾</a>
-◉ <b>Creator :</b> <a href='tg://user?id=1059785066'>𝗣𝗟𝗔𝐘 𝗕𝗢𝐘</a>
+◉ <b>Creator :</b> <a href='tg://user?id=1059785066'>𝗦 𝗥 𝗘 𝗘</a>
 ◉ <b>Library :</b> <a href='https://docs.pyrogram.org/'>Pyrogram</a>
 ◉ <b>Language :</b> <a href='https://www.python.org/'>Python 3</a>
 ◉ <b>Bot Server :</b> <a href='https://heroku.com/'>HEROKU</a>
 ◉ <b>Channel :</b> @MoviesEmperio
-◉ <b>Group :</b> @Cinemas_Empire
+◉ <b>Group :</b> @CinemasEmpire
 ◉ <b>Build Status :</b> v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
 - 𝐌𝐎𝐕𝐈𝐄𝐒 𝐄𝐌𝐏𝐎𝐑𝐈𝐎 💾 Is A Closed Source Project 🔒.  
   
 <b>CREATOR:</b>
-- <a href='tg://user?id=1059785066'>𝗣𝗟𝗔𝐘 𝗕𝗢𝐘</a>"""
+- <a href='tg://user?id=1059785066'>𝗦 𝗥 𝗘 𝗘</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
 - Filter is the feature were users can set automated replies for a particular keyword and tessa will respond whenever a keyword is found the message
