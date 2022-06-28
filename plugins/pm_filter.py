@@ -9,7 +9,7 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, BTN_ALERT, ALERT_1, DB_TEXT, SPELL_CHECK_TEXT
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, BTN_ALERT, ALERT_1, DB_TEXT, SPELL_CHECK_TEXT, DL
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -64,7 +64,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"▫️{get_size(file.file_size)}🔸{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -73,15 +73,26 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"🔸{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
+                    text=f"▫️{get_size(file.file_size)}",
                     callback_data=f'files_#{file.file_id}',
                 ),
             ]
             for file in files
         ]
+    btn.insert(0, 
+        [
+            InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
+        ]
+    )
+    btn.insert(1,
+        [
+            InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
+            InlineKeyboardButton("📺 SERIES", callback_data="srs")
+        ]
+    )
 
     if 0 < offset <= 10:
         off_set = 0
@@ -413,6 +424,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "pages":
         await query.answer("കൗതുകം ലേശം കൂടുതലാണല്ലേ", show_alert=True)
+    elif query.data == "movie":
+        await query.answer(script.MOVIE, show_alert=True)
+    elif query.data == "srs":
+        await query.answer(script.SRS, show_alert=True)    
     elif query.data == "start":
         buttons = [[
             InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
@@ -652,7 +667,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                    text=f"▫️{get_size(file.file_size)}🔸{file.file_name}", callback_data=f'{pre}#{file.file_id}'
                 ),
             ]
             for file in files
@@ -661,16 +676,27 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}",
+                    text=f"🔸{file.file_name}",
                     callback_data=f'{pre}#{file.file_id}',
                 ),
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
+                    text=f"▫️{get_size(file.file_size)}",
                     callback_data=f'{pre}_#{file.file_id}',
                 ),
             ]
             for file in files
         ]
+    btn.insert(0, 
+        [
+            InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
+        ]
+    )
+    btn.insert(1,
+        [            
+            InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
+            InlineKeyboardButton("📺 SERIES", callback_data="srs")
+        ]
+    )
 
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
@@ -719,28 +745,28 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b>🎬 Title:</b> {search}\n\n<b>👥 Requested by: {message.from_user.mention}</b>\n<b>© Powered by: <a href='https://t.me/+y53tWFUw6Q43NzE9'>{message.chat.title}</a></b>\n\n<b>✍️ Note:</b> <s>This message will be Auto-deleted after 5 minutes to avoid copyright issues.</s>"
+        cap = f"<b>🎬 Title:</b> {search}\n\n<b>👥 Requested by: {message.from_user.mention}</b>\n<b>© Powered By: {message.chat.title}</b>\n\n<b>✍️ Note:</b> <s>This message will be Auto-deleted after 5 minutes to avoid copyright issues.</s>"
     if imdb and imdb.get('poster'):
         try:
             hehe = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
-            await asyncio.sleep(300)
+            await asyncio.sleep(DL)
             await hehe.delete()
             
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
             hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
-            await asyncio.sleep(300)
+            await asyncio.sleep(DL)
             await hmm.delete()
 
         except Exception as e:
             logger.exception(e)
             fek = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
-            await asyncio.sleep(300)
+            await asyncio.sleep(DL)
             await fek.delete()
     else:
         run = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
-        await asyncio.sleep(300)
+        await asyncio.sleep(DL)
         await run.delete()
         
 
