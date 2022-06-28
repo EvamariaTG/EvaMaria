@@ -105,3 +105,28 @@ Added By - {}
 ID - <code>{}</code>
 Name - {}
 """
+    MOVIE = """Movie Request Format
+
+ Go to Google ➞ Type Moovie Name ➞  
+ Copy Correct Name ➞ Paste This Group
+
+Example :- Beast / Beast 2022
+
+🚫 Don't Use ;(!,../)
+
+©All Movie's Official"""
+
+
+    SRS = """Series Request Format
+
+ Go to Google ➞ Type Moovie Name ➞  
+ Copy Correct Name ➞ Paste This Group
+
+Example :- Loki S01 E01
+
+🚫 Don't Use ;(!,../)
+
+©All Movie's Official"""
+
+
+
