@@ -693,8 +693,8 @@ async def auto_filter(client, msg, spoll=False):
     )
    # btn.insert(1,
        # [            
-            InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
-            InlineKeyboardButton("📺 SERIES", callback_data="srs")
+            #InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
+           # InlineKeyboardButton("📺 SERIES", callback_data="srs")
        # ]
    # )
 
