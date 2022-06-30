@@ -87,12 +87,12 @@ async def next_page(bot, query):
             InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
         ]
     )
-    btn.insert(1,
-        [
-            InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
-            InlineKeyboardButton("📺 SERIES", callback_data="srs")
-        ]
-    )
+    #btn.insert(1,
+       # [
+         #   InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
+          #  InlineKeyboardButton("📺 SERIES", callback_data="srs")
+       # ]
+   # )
 
     if 0 < offset <= 10:
         off_set = 0
@@ -424,10 +424,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "pages":
         await query.answer("കൗതുകം ലേശം കൂടുതലാണല്ലേ", show_alert=True)
-    elif query.data == "movie":
-        await query.answer(script.MOVIE, show_alert=True)
-    elif query.data == "srs":
-        await query.answer(script.SRS, show_alert=True)    
+    #elif query.data == "movie":
+        #await query.answer(script.MOVIE, show_alert=True)
+    #elif query.data == "srs":
+        #await query.answer(script.SRS, show_alert=True)    
     elif query.data == "start":
         buttons = [[
             InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
@@ -691,12 +691,12 @@ async def auto_filter(client, msg, spoll=False):
             InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
         ]
     )
-    btn.insert(1,
-        [            
+   # btn.insert(1,
+       # [            
             InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
             InlineKeyboardButton("📺 SERIES", callback_data="srs")
-        ]
-    )
+       # ]
+   # )
 
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
