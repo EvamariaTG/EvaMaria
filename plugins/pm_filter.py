@@ -87,12 +87,12 @@ async def next_page(bot, query):
             InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
         ]
     )
-    #btn.insert(1,
-       # [
-         #   InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
-          #  InlineKeyboardButton("📺 SERIES", callback_data="srs")
-       # ]
-   # )
+    btn.insert(1,
+        [
+            InlineKeyboardButton("🎥 MOVIE", url="https://t.me/all_movies_official/10"),
+            InlineKeyboardButton("📺 SERIES", url="https://t.me/all_movies_official/9")
+        ]
+    )
 
     if 0 < offset <= 10:
         off_set = 0
@@ -691,12 +691,12 @@ async def auto_filter(client, msg, spoll=False):
             InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
         ]
     )
-   # btn.insert(1,
-       # [            
-            #InlineKeyboardButton("🎥 MOVIE", callback_data="movie"),
-           # InlineKeyboardButton("📺 SERIES", callback_data="srs")
-       # ]
-   # )
+   btn.insert(1,
+        [
+            InlineKeyboardButton("🎥 MOVIE", url="https://t.me/all_movies_official/10"),
+            InlineKeyboardButton("📺 SERIES", url="https://t.me/all_movies_official/9")
+        ]
+    )
 
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
