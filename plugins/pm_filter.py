@@ -10,7 +10,7 @@ from database.connections_mdb import active_connection, all_connections, delete_
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
     SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, BTN_ALERT, ALERT_1, DB_TEXT, SPELL_CHECK_TEXT, DL
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
@@ -84,13 +84,13 @@ async def next_page(bot, query):
         ]
     btn.insert(0, 
         [
-            InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
+            InlineKeyboardButton(text=f'🍃 {search} 🍃', callback_data='pages')
         ]
     )
     btn.insert(1,
         [
-            InlineKeyboardButton("🎥 MOVIE", url="https://t.me/all_movies_official/10"),
-            InlineKeyboardButton("📺 SERIES", url="https://t.me/all_movies_official/9")
+            InlineKeyboardButton(text="🎥 MOVIE", callback_data="movie"),
+            InlineKeyboardButton(text="📺 SERIES", callback_data="srs")
         ]
     )
 
@@ -134,7 +134,7 @@ async def advantage_spoll_choker(bot, query):
         return await query.answer("okDa", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
-    movies = SPELL_CHECK.get(query.message.reply_to_message.chat_id)
+    movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movie = movies[(int(movie_))]
@@ -424,17 +424,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "pages":
         await query.answer("കൗതുകം ലേശം കൂടുതലാണല്ലേ", show_alert=True)
-    #elif query.data == "movie":
-        #await query.answer(script.MOVIE, show_alert=True)
-    #elif query.data == "srs":
-        #await query.answer(script.SRS, show_alert=True)    
+    elif query.data == "movie":
+        await query.answer(script.MOVIE, show_alert=True)
+    elif query.data == "srs":
+        await query.answer(script.SRS, show_alert=True)    
     elif query.data == "start":
-        buttons = [[
-            InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-        ], [
+        buttons = [[            
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
             InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official')
-        ], [
+            ],[
             InlineKeyboardButton('ℹ️ Help', callback_data='help'),
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
@@ -688,13 +686,13 @@ async def auto_filter(client, msg, spoll=False):
         ]
     btn.insert(0, 
         [
-            InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
+            InlineKeyboardButton(text=f'🍃 {search} 🍃', callback_data='pages')
         ]
     )
     btn.insert(1,
         [
-            InlineKeyboardButton("🎥 MOVIE", url="https://t.me/all_movies_official/10"),
-            InlineKeyboardButton("📺 SERIES", url="https://t.me/all_movies_official/9")
+            InlineKeyboardButton(text="🎥 MOVIE", callback_data="movie"),
+            InlineKeyboardButton(text="📺 SERIES", callback_data="srs")
         ]
     )
 
