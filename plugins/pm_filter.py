@@ -686,12 +686,12 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-   btn.insert(0, 
+    btn.insert(0, 
         [
             InlineKeyboardButton(f'🍃 {search} 🍃', 'dupe')
         ]
     )
-   btn.insert(1,
+    btn.insert(1,
         [
             InlineKeyboardButton("🎥 MOVIE", url="https://t.me/all_movies_official/10"),
             InlineKeyboardButton("📺 SERIES", url="https://t.me/all_movies_official/9")
