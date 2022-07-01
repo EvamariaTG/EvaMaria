@@ -42,7 +42,7 @@ async def start(client, message):
             InlineKeyboardButton('🍂 ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/all_movies_official')
             ],[
             InlineKeyboardButton('🔮 sᴛᴀᴛᴜs', callback_data='stats')
-            InlineKeyboardButton('🍃 ᴀʙᴏᴜᴛ', callback_data='about')
+            InlineKeyboardButton('🍃 ᴀʙᴏᴜᴛ', callback_data='mabout')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
         await message.reply_photo(
@@ -77,11 +77,11 @@ async def start(client, message):
         return
     if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[            
-            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official')
+            InlineKeyboardButton('🍁 ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ', url='https://t.me/all_movies_group_2'),
+            InlineKeyboardButton('🍂 ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/all_movies_official')
             ],[
-            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-            InlineKeyboardButton('😊 About', callback_data='about')
+            InlineKeyboardButton('🔮 sᴛᴀᴛᴜs', callback_data='stats')
+            InlineKeyboardButton('🍃 ᴀʙᴏᴜᴛ', callback_data='mabout')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
         await message.reply_photo(
