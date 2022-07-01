@@ -146,7 +146,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            k = await query.message.edit(DB_TEXT)
+            k = await query.message.edit("The Movie You Asked For Does Not Have Our \nDatabase OR The Movie You Asked For Has \nNot Been OTT Released Yet Otherwise The \nSpelling Of The Movie You Asked For Is Incorrect")
             await asyncio.sleep(10)
             await k.delete()
 
@@ -390,7 +390,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except Exception as e:
                 await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
         else:
-            return await query.answer(BTN_ALERT.format(user = query.from_user.first_name), show_alert=True)
+            return await query.answer("Hey {user} this is not for you. please search your owen", show_alert=True)
 
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -817,7 +817,7 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await msg.reply(SPELL_CHECK_TEXT,
+    await msg.reply("<b>📣 I couldn't find anything related to that Did you mean any one of these?</b>\n\n<b>📣 നിങ്ങൾ ഉദ്ദേശിച്ച മൂവി താഴെ കാണുന്ന വല്ലതും ആണ് എങ്കിൽ.അതിൽ ക്ലിക്ക് ചെയ്യുക</b>",
                     reply_markup=InlineKeyboardMarkup(btn))
 
 async def manual_filters(client, message, text=False):
