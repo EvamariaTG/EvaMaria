@@ -768,8 +768,7 @@ async def auto_filter(client, msg, spoll=False):
         run = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
         await asyncio.sleep(DL)
         await run.delete()
-        
-
+       
 async def advantage_spell_chok(msg):
     query = re.sub(
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
@@ -820,10 +819,8 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    whh = await msg.reply(SPELL_CHECK_TEXT, reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(200)
-    await whh.delete()
-
+    await msg.reply(SPELL_CHECK_TEXT,
+                    reply_markup=InlineKeyboardMarkup(btn))
 
 async def manual_filters(client, message, text=False):
     group_id = message.chat.id
