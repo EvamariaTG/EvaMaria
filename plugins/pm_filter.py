@@ -430,11 +430,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer(script.SRS, show_alert=True)    
     elif query.data == "start":
         buttons = [[            
-            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official')
+            InlineKeyboardButton('🍁 ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ', url='https://t.me/all_movies_group_2'),
+            InlineKeyboardButton('🍂 ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/all_movies_official')
             ],[
-            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-            InlineKeyboardButton('😊 About', callback_data='about')
+            InlineKeyboardButton('ℹ️ ʜᴇʟᴘ', callback_data='help'),
+            InlineKeyboardButton('🍃 ᴀʙᴏᴜᴛ', callback_data='about')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode='html'
+        )
+        await query.answer('Piracy Is Crime')
+    elif query.data == "mstart":
+        buttons = [[            
+            InlineKeyboardButton('🍁 ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ', url='https://t.me/all_movies_group_2'),
+            InlineKeyboardButton('🍂 ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/all_movies_official')
+            ],[
+            InlineKeyboardButton('🔮 sᴛᴀᴛᴜs', callback_data='stats')
+            InlineKeyboardButton('🍃 ᴀʙᴏᴜᴛ', callback_data='mabout')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -463,7 +478,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "about":
         buttons = [[
             InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official'),
-            InlineKeyboardButton('♥️ Source', callback_data='source')
+            InlineKeyboardButton('♥️ Source', url='https://github.com/EvamariaTG/EvaMaria')
         ], [
             InlineKeyboardButton('🏠 Home', callback_data='start'),
             InlineKeyboardButton('🔐 Close', callback_data='close_data')
@@ -474,16 +489,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
         )
-    elif query.data == "source":
+    elif query.data == "mabout":
         buttons = [[
-            InlineKeyboardButton('👩‍🦯 Back', callback_data='about')
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official'),
+            InlineKeyboardButton('♥️ Source', url='https://github.com/EvamariaTG/EvaMaria')
+        ], [
+            InlineKeyboardButton('🏠 Home', callback_data='mstart'),
+            InlineKeyboardButton('🔐 Close', callback_data='close_data')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
-            text=script.SOURCE_TXT,
+            text=script.ABOUT_TXT.format(temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode='html'
-        )
+        )    
     elif query.data == "manuelfilter":
         buttons = [[
             InlineKeyboardButton('👩‍🦯 Back', callback_data='help'),
@@ -548,8 +567,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "stats":
         buttons = [[
-            InlineKeyboardButton('👩‍🦯 Back', callback_data='help'),
-            InlineKeyboardButton('♻️', callback_data='rfrsh')
+            InlineKeyboardButton('👩‍🦯 Back', callback_data='mstart'),
+            InlineKeyboardButton('♻️', callback_data='stats')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
@@ -563,26 +582,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=script.STATUS_TXT.format(total, users, chats, monsize, free),
             reply_markup=reply_markup,
             parse_mode='html'
-        )
-    elif query.data == "rfrsh":
-        await query.answer("Fetching MongoDb DataBase")
-        buttons = [[
-            InlineKeyboardButton('👩‍🦯 Back', callback_data='help'),
-            InlineKeyboardButton('♻️', callback_data='rfrsh')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        total = await Media.count_documents()
-        users = await db.total_users_count()
-        chats = await db.total_chat_count()
-        monsize = await db.get_db_size()
-        free = 536870912 - monsize
-        monsize = get_size(monsize)
-        free = get_size(free)
-        await query.message.edit_text(
-            text=script.STATUS_TXT.format(total, users, chats, monsize, free),
-            reply_markup=reply_markup,
-            parse_mode='html'
-        )
+        )    
     elif query.data.startswith("setgs"):
         ident, set_type, status, grp_id = query.data.split("#")
         grpid = await active_connection(str(query.from_user.id))
