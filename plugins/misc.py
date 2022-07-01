@@ -1,8 +1,10 @@
 import os
+import random
+from Script import script
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from info import IMDB_TEMPLATE
-from utils import extract_user, get_file_id, get_poster, last_online
+from info import IMDB_TEMPLATE, ADMINS, PICS
+from utils import extract_user, get_file_id, get_poster, last_online, temp
 import time
 from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -211,4 +213,29 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
     await quer_y.answer()
         
 
+@Client.on_message(filters.user(ADMINS) & filters.command(["start"]))
+async def start(client, message):
+        if len(message.command) != 2:
+        buttons = [[            
+            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official')
+            ],[
+            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
+            InlineKeyboardButton('😊 About', callback_data='about')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)        
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode='html'
+        )
         
+
+       
+
+
+
+
+
+
