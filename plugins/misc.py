@@ -215,7 +215,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
 
 @Client.on_message(filters.user(ADMINS) & filters.command(["start"]))
 async def start(client, message):
-        if len(message.command) != 2:
+    if len(message.command) != 2:
         buttons = [[            
             InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', switch_inline_query_current_chat='')
             ],[
