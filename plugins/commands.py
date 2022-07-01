@@ -19,17 +19,12 @@ logger = logging.getLogger(__name__)
 BATCH_FILES = {}
 BTN = InlineKeyboardMarkup([[ InlineKeyboardButton('❣️ 𝙾𝚄𝚁 𝙲𝙷𝙰𝙽𝙽𝙴𝙻 ❣️', url='https://t.me/all_movies_official') ]])
                     
-@Client.on_message(filters.command("start"))
+@Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
-        buttons = [
-            [
-                InlineKeyboardButton('📢 𝚄𝙿𝙳𝙰𝚃𝙴𝚂 📢', url='https://t.me/all_movies_official')
-            ],
-            [
-                InlineKeyboardButton('ℹ️ 𝙷𝙴𝙻𝙿 ℹ️', url=f"https://t.me/{temp.U_NAME}?start=help")
-            ]
-            ]
+        buttons = [[
+                InlineKeyboardButton('📢 𝚄𝙿𝙳𝙰𝚃𝙴𝚂 📢', url='https://t.me/all_movies_official')            
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         disable_web_page_preview = True,
         await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
@@ -43,11 +38,11 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention, message.from_user.username, temp.U_NAME))
     if len(message.command) != 2:
         buttons = [[            
-            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official')
+            InlineKeyboardButton('🍁 ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ', url='https://t.me/all_movies_group_2'),
+            InlineKeyboardButton('🍂 ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/all_movies_official')
             ],[
-            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-            InlineKeyboardButton('😊 About', callback_data='about')
+            InlineKeyboardButton('🔮 sᴛᴀᴛᴜs', callback_data='stats')
+            InlineKeyboardButton('🍃 ᴀʙᴏᴜᴛ', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
         await message.reply_photo(
