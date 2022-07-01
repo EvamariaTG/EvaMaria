@@ -217,11 +217,13 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
 async def start(client, message):
         if len(message.command) != 2:
         buttons = [[            
-            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/all_movies_official')
+            InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', switch_inline_query_current_chat='')
             ],[
-            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
-            InlineKeyboardButton('😊 About', callback_data='about')
+            InlineKeyboardButton('🍁 ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ', url='https://t.me/all_movies_group_2'),
+            InlineKeyboardButton('🍂 ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ', url='https://t.me/all_movies_official')
+            ],[
+            InlineKeyboardButton('ℹ️ ʜᴇʟᴘ', callback_data='help'),
+            InlineKeyboardButton('🍃 ᴀʙᴏᴜᴛ', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
         await message.reply_photo(
