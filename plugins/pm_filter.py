@@ -33,7 +33,10 @@ SPELL_CHECK = {}
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client,message):
     k = await manual_filters(client, message)
-    if
+    if k == False:
+        await auto_filter(client, message)
+
+
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
 
@@ -88,10 +91,13 @@ async def next_page(bot, query):
         off_set = offset - 10
     if n_offset == 0:
         btn.append(
-            [InlineKeyboardButton("👨‍🦯 Ⓑ︎Ⓐ︎Ⓒ︎Ⓚ︎", callback_data=f"next_{req}_{key}_{off_set}"), InlineKeyboardButton(f"📖 𝑝𝑎𝑔𝑒𝑠 {round(int(offset)/10)+1} / {round(total/10)}", callback_data="pages")]
+            [InlineKeyboardButton("👨‍🦯 Ⓑ︎Ⓐ︎Ⓒ︎Ⓚ︎", callback_data=f"next_{req}_{key}_{off_set}"), 
+             InlineKeyboardButton(f"📖 𝑝𝑎𝑔𝑒𝑠 {round(int(offset)/10)+1} / {round(total/10)}", 
+                                  callback_data="pages")]
         )
     elif off_set is None:
-        btn.append([InlineKeyboardButton(f"📝 {round(int(offset)/10)+1} / {round(total/10)}", callback_data="pages"), InlineKeyboardButton("ɴᴇxᴛ 🚸", callback_data=f"next_{req}_{key}_{n_offset}")])
+        btn.append([InlineKeyboardButton(f"📝 {round(int(offset)/10)+1} / {round(total/10)}", callback_data="pages"), 
+                    InlineKeyboardButton("ɴᴇxᴛ 🚸", callback_data=f"next_{req}_{key}_{n_offset}")])
     else:
         btn.append(
             [
@@ -108,6 +114,7 @@ async def next_page(bot, query):
         pass
     await query.answer()
 
+
 @Client.on_callback_query(filters.regex(r"^spolling"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
@@ -120,14 +127,16 @@ async def advantage_spoll_choker(bot, query):
         return await query.answer("Yᴏᴜ ᴀʀᴇ ᴜsɪɴɢ ᴛʜɪs ғᴏʀ ᴏɴᴇ ᴏғ ᴍʏ ᴏʟᴅ ᴍᴇssᴀɢᴇ 🥺, ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴛʜᴇ ʀᴇǫᴜᴇsᴛ ᴀɢᴀɪɴ😢.", show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer('Cʜᴇᴄᴋɪɴɢ ғᴏʀ Mᴏᴠɪᴇ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ...')
-    files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
-    if files:
-        k = (movie, files, offset, total_results)
-        await auto_filter(bot, query, k)
-    else:
-        k = await query.message.edit('Tʜɪs Mᴏᴠɪᴇ Nᴏᴛ Fᴏᴜɴᴅ Iɴ DᴀᴛᴀBᴀsᴇ')
-        await asyncio.sleep(10)
-        await k.delete()
+    k = await manual_filters(bot, query.message, text=movie)
+    if k == false:
+        files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
+        if files:
+            k = (movie, files, offset, total_results)
+            await auto_filter(bot, query, k)
+        else:
+            k = await query.message.edit('Tʜɪs Mᴏᴠɪᴇ Nᴏᴛ Fᴏᴜɴᴅ Iɴ DᴀᴛᴀBᴀsᴇ')
+            await asyncio.sleep(10)
+            await k.delete()
 
 
 @Client.on_callback_query()
@@ -193,8 +202,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
 
         group_id = query.data.split(":")[1]
-        title = query.data.split(":")[2]
-        act = query.data.split(":")[3]
+
+        act = query.data.split(":")[2]
+        hr = await client.get_chat(int(group_id))
+        title = hr.title
         user_id = query.from_user.id
 
         if act == "":
@@ -205,7 +216,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             cb = "disconnect"
 
         keyboard = InlineKeyboardMarkup([
-            [InlineKeyboardButton(f"{stat}", callback_data=f"{cb}:{group_id}:{title}"),
+            [InlineKeyboardButton(f"{stat}", callback_data=f"{cb}:{group_id}"),
                 InlineKeyboardButton("DELETE", callback_data=f"deletecb:{group_id}")],
             [InlineKeyboardButton("BACK", callback_data="backcb")]
         ])
@@ -216,12 +227,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode="md"
         )
         return
-
     elif "connectcb" in query.data:
         await query.answer()
 
         group_id = query.data.split(":")[1]
-        title = query.data.split(":")[2]
+        
+        hr = await client.get_chat(int(group_id))
+
+        title = hr.title
+
         user_id = query.from_user.id
 
         mkact = await make_active(str(user_id), str(group_id))
@@ -237,7 +251,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif "disconnect" in query.data:
         await query.answer()
 
-        title = query.data.split(":")[2]
+        group_id = query.data.split(".")[1]
+
+        hr = await client.get_chat(int(group_id))
+
+        title = hr.title
         user_id = query.from_user.id
 
         mkinact = await make_inactive(str(user_id))
@@ -308,7 +326,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             alert = alerts[int(i)]
             alert = alert.replace("\\n", "\n").replace("\\t", "\t")
             await query.answer(alert,show_alert=True)
-
     if query.data.startswith("file"):
         ident, file_id = query.data.split("#")
         files_ = await get_file_details(file_id)
@@ -316,8 +333,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             return await query.answer('No such file exist.')
         files = files_[0]
         title = files.file_name
-        size=get_size(files.file_size)
-        f_caption=files.caption
+        size = get_size(files.file_size)
+        f_caption = files.caption
+        settings = await get_settings(query.message.chat.id)
         if CUSTOM_FILE_CAPTION:
             try:
                 f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
