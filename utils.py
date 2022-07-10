@@ -52,6 +52,7 @@ async def is_subscribed(bot, query):
 
     return False
 
+
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
