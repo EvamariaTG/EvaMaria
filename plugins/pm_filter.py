@@ -6,8 +6,10 @@ import ast
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 import pyrogram
-from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, make_inactive
-from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE
+from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, make_inactive, \
+    make_inactive
+from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -20,57 +22,18 @@ from database.filters_mdb import(
    get_filters,
 )
 import logging
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
 
+
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client,message):
-    group_id = message.chat.id
-    name = message.text
-
-    keywords = await get_filters(group_id)
-    for keyword in reversed(sorted(keywords, key=len)):
-        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
-        if re.search(pattern, name, flags=re.IGNORECASE):
-            reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
-
-            if reply_text:
-                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
-
-            if btn is not None:
-                try:
-                    if fileid == "None":
-                        if btn == "[]":
-                            await message.reply_text(reply_text, disable_web_page_preview=True)
-                        else:
-                            button = eval(btn)
-                            await message.reply_text(
-                                reply_text,
-                                disable_web_page_preview=True,
-                                reply_markup=InlineKeyboardMarkup(button)
-                            )
-                    elif btn == "[]":
-                        await message.reply_cached_media(
-                            fileid,
-                            caption=reply_text or ""
-                        )
-                    else:
-                        button = eval(btn) 
-                        await message.reply_cached_media(
-                            fileid,
-                            caption=reply_text or "",
-                            reply_markup=InlineKeyboardMarkup(button)
-                        )
-                except Exception as e:
-                    logger.exception(e)
-                break 
-
-    else:
-        await auto_filter(client, message)   
-
+    k = await manual_filters(client, message)
+    if
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
 
