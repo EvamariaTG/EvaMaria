@@ -21,7 +21,7 @@ BTN_URL_REGEX = re.compile(
     r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))"
 )
 
-IMDb = imdbpy==2021.4.18 
+IMDb = IMDb ()
 
 BANNED = {}
 SMART_OPEN = '“'
