@@ -38,6 +38,7 @@ class temp(object):
     MELCOW = {}
     U_NAME = None
     B_NAME = None
+    SETTINGS = {}
 
 async def is_subscribed(bot, query):
     try:
@@ -51,7 +52,6 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-
 
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
