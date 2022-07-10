@@ -59,7 +59,8 @@ async def next_page(bot, query):
 
     if not files:
         return
-    if SINGLE_BUTTON:
+    settings = await get_settings(query.message.chat.id)
+    if settings ['button']:
         btn = [
             [
                 InlineKeyboardButton(
