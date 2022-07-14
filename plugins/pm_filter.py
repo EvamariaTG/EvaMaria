@@ -419,12 +419,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➕ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘs ➕', url='http://t.me/Lucifer_filter_bot?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 Sᴇᴀʀᴄʜ Hᴇʀᴇ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 MOVIE REQUEST GROUP', url='https://t.me/MOVIEBRANTHANZGROUP'),
-            InlineKeyboardButton('🤖 SUPPORT', url='https://t.me/kunjappansupportez'),
+            InlineKeyboardButton('🤖 Uᴘᴅᴀᴛᴇs', url='https://t.me/kunjappansupportez')
             ],[
             InlineKeyboardButton('🥺 Hᴇʟᴘ', callback_data='help'),
-            InlineKeyboardButton('😎 Aʙᴏᴜᴛ', callback_data='about'),
-
+            InlineKeyboardButton('😎 Aʙᴏᴜᴛ', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -451,8 +449,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('🤖 OUR GROUP', url='https://t.me/MOVIEBRANTHANZGROUP'),
-            InlineKeyboardButton('💜 Our channel', url='https://t.me/kunjappansupportez')
+            InlineKeyboardButton('🤖 Uᴘᴅᴀᴛᴇs', url='https://t.me/kunjappansupportez'),
+            InlineKeyboardButton('💜 Sᴏᴜʀᴄᴇ', callback_data='source')
             ],[
             InlineKeyboardButton('🏠 Hᴏᴍᴇ', callback_data='start'),
             InlineKeyboardButton('🥺 Hᴇʟᴘ', callback_data='help'),
@@ -621,7 +619,7 @@ async def auto_filter(client, msg, spoll=False):
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         btn.append(
-            [InlineKeyboardButton(text=f"📖 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇᴇxᴛ 🚸",callback_data=f"next_{req}_{key}_{offset}")]
+            [InlineKeyboardButton(text=f"📖 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ 🚸",callback_data=f"next_{req}_{key}_{offset}")]
         )
     else:
         btn.append(
