@@ -20,7 +20,7 @@ powered by :- @Vaarasudu_vt Maintained By :- @Infinity_movies2"""
 - <a href=https://t.me/infinity_movies2>Infinity_movies2</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
-- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
+- Filter is the feature were users can set automated replies for a particular keyword and infinity_movies2 will respond whenever a keyword is found the message
 
 <b>NOTE:</b>
 1. @infinity_movies2bot should have admin privillage.
