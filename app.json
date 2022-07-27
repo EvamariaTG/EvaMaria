@@ -1,5 +1,5 @@
 {
-    "name": "EvaMariaBot",
+    "name": "Auto_filter_bot4",
     "description": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
     "stack": "container",
     "keywords": [
