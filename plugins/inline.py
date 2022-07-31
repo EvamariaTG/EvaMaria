@@ -26,7 +26,7 @@ async def answer(bot, query):
     if not await inline_users(query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='Not Available Get Lost',
+                           switch_pm_text='You Are Banned So Get Out',
                            switch_pm_parameter="hehe")
         return
 
