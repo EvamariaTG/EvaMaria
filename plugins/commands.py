@@ -92,6 +92,7 @@ async def start(client, message):
             ],[
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
             InlineKeyboardButton('🤖 Updates', url='https://t.me/+aHONzFk7kbVhY2Zl')
+            InlineKeyboardButton('🎗️Main Group',url=https://t.me/movie_link_lk')
             ],[
             InlineKeyboardButton('ℹ️ Help', callback_data='help'),
             InlineKeyboardButton('😊 About', callback_data='about')
