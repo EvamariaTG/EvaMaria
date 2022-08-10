@@ -208,26 +208,21 @@ async def start(client, message):
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
-            msg = await client.send_cached_media(
-                chat_id=message.from_user.id,
-                file_id=file_id,
-                protect_content=True if pre == 'filep' else False,
-                )
+            msg = await message.reply_cached_media(file_id=file_id, protect_content=True if pre == 'filep' else False)
             filetype = msg.media
-            file = getattr(msg, filetype)
+            file = getattr(msg, filetype.value)
             title = file.file_name
-            size=get_size(file.file_size)
-            f_caption = f"<code>{title}</code>"
-            if CUSTOM_FILE_CAPTION:
-                try:
-                    f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
-                except:
-                    return
-            await msg.edit_caption(f_caption)
-            return
-        except:
-            pass
-        return await message.reply('No such file exist.')
+            size = file.file_size
+            f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size)
+            await msg.edit(f_caption)
+            hemlo = await message.reply('**NOTE: This file will be deleted in 10 minutes to avoid copyright infringement, make sure you forward it to your saved messages.**')
+            await asyncio.sleep(600)
+            await msg.delete()
+            await hemlo.delete()
+            return await message.reply("Your file has been deleted to avoid copyright infringement, send /cmds or /help to know about other features.")
+        except Exception as e:
+            return await message.reply(e)
+        
     files = files_[0]
     title = files.file_name
     size=get_size(files.file_size)
